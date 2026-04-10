@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# clone-website skill artifacts (heavy, local-only)
+/docs/
+/.claude-flow/

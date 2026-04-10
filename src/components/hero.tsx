@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Star, ShoppingCart, Globe, Rocket, RefreshCw, Sparkles } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
+import { AnimatedShaderBackground } from "@/components/ui/animated-shader-background";
 
 const t = { duration: 0.7, ease: "easeOut" as const };
 
@@ -17,9 +18,15 @@ const categories = [
 export function Hero() {
   return (
     <section className="section-dark section-curve relative overflow-hidden pt-32 pb-24 lg:pt-40 lg:pb-32">
-      {/* Cyan techlines + radial glow background */}
-      <TechLines variant="dense" corners />
-      <div className="hero-bg-glow" aria-hidden="true" />
+      {/* WebGL aurora shader — full-bleed background */}
+      <AnimatedShaderBackground />
+      {/* Legibility overlay: dims the shader so text stays readable */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,12,0.35)_0%,rgba(10,10,12,0.72)_70%,rgba(10,10,12,0.92)_100%)]"
+      />
+      {/* Minimalist cyan frame on top */}
+      <TechLines variant="dense" />
 
       <div className="relative z-10 mx-auto max-w-[1280px] px-6">
         {/* Badge pill */}

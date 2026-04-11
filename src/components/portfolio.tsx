@@ -4,8 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
-  ChevronUp,
-  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   ShoppingCart,
   Globe,
   Rocket,
@@ -27,76 +27,75 @@ const projects: {
     type: "E-commerce",
     typeIcon: ShoppingCart,
     description:
-      "Boutique de mobilier haut de gamme. Design épuré, expérience d'achat fluide, taux de conversion +40% après refonte.",
-    tags: ["Shopify", "Design Premium", "Animé"],
+      "Boutique de mobilier haut de gamme. Design épuré, taux de conversion +40% après refonte.",
+    tags: ["Shopify", "Premium", "Animé"],
     url: "#",
-    gradient: "from-blue-500/15 via-transparent to-purple-500/10",
+    gradient: "from-blue-500/20 via-transparent to-purple-500/15",
   },
   {
     title: "NovaTech",
     type: "Landing Page",
     typeIcon: Rocket,
     description:
-      "Plateforme SaaS B2B. Landing page d'acquisition avec un taux de conversion 3x supérieur au benchmark du secteur.",
+      "Plateforme SaaS B2B. Taux de conversion 3x supérieur au benchmark du secteur.",
     tags: ["Next.js", "SaaS", "A/B testé"],
     url: "#",
-    gradient: "from-cyan-500/15 via-transparent to-blue-500/10",
+    gradient: "from-cyan-500/20 via-transparent to-blue-500/15",
   },
   {
     title: "Studio Aura",
     type: "Site Vitrine",
     typeIcon: Globe,
     description:
-      "Portfolio interactif pour une agence créative. Animations sur mesure, navigation immersive, score PageSpeed 98.",
+      "Portfolio interactif pour une agence créative. Animations sur mesure, PageSpeed 98.",
     tags: ["Onepage", "Interactif", "Animé"],
     url: "#",
-    gradient: "from-purple-500/15 via-transparent to-pink-500/10",
+    gradient: "from-purple-500/20 via-transparent to-pink-500/15",
   },
   {
     title: "FreshMarket",
     type: "E-commerce",
     typeIcon: ShoppingCart,
     description:
-      "Alimentation bio en ligne. Catalogue de 500+ produits, checkout optimisé, livraison intégrée.",
-    tags: ["Shopify Plus", "Multi-produits", "Performance"],
+      "Alimentation bio en ligne. Catalogue 500+ produits, checkout optimisé, livraison intégrée.",
+    tags: ["Shopify Plus", "Catalog", "Performance"],
     url: "#",
-    gradient: "from-green-500/15 via-transparent to-cyan-500/10",
+    gradient: "from-green-500/20 via-transparent to-cyan-500/15",
   },
 ];
 
-function BrowserMockup({ gradient }: { gradient: string }) {
+function PreviewMockup({ gradient }: { gradient: string }) {
   return (
-    <div className="relative w-full overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0a0a0a] shadow-2xl">
-      <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
-        <div className="flex gap-1.5">
-          <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <div className="h-2.5 w-2.5 rounded-full bg-white/10" />
-        </div>
-        <div className="ml-2 h-5 flex-1 rounded-md bg-white/[0.04] sm:max-w-[240px]" />
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)]">
+      {/* Browser chrome */}
+      <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-3 py-2">
+        <div className="h-2 w-2 rounded-full bg-white/10" />
+        <div className="h-2 w-2 rounded-full bg-white/10" />
+        <div className="h-2 w-2 rounded-full bg-white/10" />
+        <div className="ml-1.5 h-3.5 flex-1 rounded-sm bg-white/[0.04]" />
       </div>
-      <div className={`relative aspect-[16/10] bg-gradient-to-br ${gradient} p-6 sm:p-8`}>
-        <div className="mb-8 flex items-center justify-between">
-          <div className="h-3 w-20 rounded-full bg-white/[0.08]" />
-          <div className="hidden gap-4 sm:flex">
-            <div className="h-2.5 w-12 rounded-full bg-white/[0.05]" />
-            <div className="h-2.5 w-12 rounded-full bg-white/[0.05]" />
-            <div className="h-2.5 w-12 rounded-full bg-white/[0.05]" />
+      {/* Content */}
+      <div className={`relative aspect-[16/9] bg-gradient-to-br ${gradient} p-4 sm:p-5`}>
+        <div className="mb-4 flex items-center justify-between">
+          <div className="h-2.5 w-14 rounded-full bg-white/[0.12]" />
+          <div className="hidden gap-3 sm:flex">
+            <div className="h-2 w-8 rounded-full bg-white/[0.06]" />
+            <div className="h-2 w-8 rounded-full bg-white/[0.06]" />
+            <div className="h-2 w-8 rounded-full bg-white/[0.06]" />
           </div>
         </div>
-        <div className="space-y-3">
-          <div className="h-5 w-3/4 rounded-full bg-white/[0.08]" />
-          <div className="h-5 w-1/2 rounded-full bg-white/[0.06]" />
-          <div className="mt-4 h-3 w-2/3 rounded-full bg-white/[0.04]" />
+        <div className="space-y-2">
+          <div className="h-3 w-3/4 rounded-full bg-white/[0.1]" />
+          <div className="h-3 w-1/2 rounded-full bg-white/[0.08]" />
         </div>
-        <div className="mt-6 flex gap-3">
-          <div className="h-8 w-24 rounded-full bg-accent/25" />
-          <div className="h-8 w-24 rounded-full bg-white/[0.06]" />
+        <div className="mt-3 flex gap-2">
+          <div className="h-5 w-16 rounded-full bg-accent/30" />
+          <div className="h-5 w-16 rounded-full bg-white/[0.06]" />
         </div>
-        <div className="mt-8 grid grid-cols-3 gap-3">
-          <div className="h-16 rounded-lg bg-white/[0.04]" />
-          <div className="h-16 rounded-lg bg-white/[0.04]" />
-          <div className="h-16 rounded-lg bg-white/[0.04]" />
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          <div className="h-10 rounded-md bg-white/[0.05]" />
+          <div className="h-10 rounded-md bg-white/[0.05]" />
+          <div className="h-10 rounded-md bg-white/[0.05]" />
         </div>
       </div>
     </div>
@@ -110,149 +109,148 @@ export function Portfolio() {
   const next = () => setActive((a) => (a === projects.length - 1 ? 0 : a + 1));
 
   const project = projects[active];
+  const ProjectIcon = project.typeIcon;
 
   return (
-    <section id="portfolio" className="section-dark section-curve relative overflow-hidden py-28 lg:py-36">
+    <section
+      id="portfolio"
+      className="section-dark section-curve relative overflow-hidden py-24 lg:py-28"
+    >
       <TechLines variant="default" />
       <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-accent/[0.04] blur-[140px]" />
 
-      <div className="relative mx-auto max-w-[1280px] px-6">
+      <div className="relative mx-auto max-w-3xl px-6">
+        {/* Compact header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, ease: "easeOut" as const }}
+          className="mb-10 text-center"
+        >
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent/80">
+            Réalisations
+          </span>
+          <h2 className="mt-3 font-heading text-[clamp(1.75rem,3.8vw,2.5rem)] font-medium leading-[1.08] tracking-[-0.03em] text-white">
+            Des résultats, pas des <em className="heading-italic">promesses</em>.
+          </h2>
+        </motion.div>
+
+        {/* Unified card — everything inside */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" as const }}
-          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
-        >
-          <div className="max-w-2xl">
-            <span className="pill pill-outline-dark">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              Réalisations
-            </span>
-            <h2 className="mt-6 font-heading text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white">
-              <span className="text-grad-fade-dark">Des résultats,</span>
-              <br />
-              pas des <em className="heading-italic">promesses</em>.
-            </h2>
-          </div>
-          <p className="max-w-sm text-[15px] leading-relaxed text-emphasis-dark lg:text-right lg:text-[17px]">
-            Chaque projet livré a été pensé pour convertir. On mesure les
-            résultats, on itère, on optimise.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" as const }}
-          className="mt-14 lg:mt-20"
+          transition={{ duration: 0.55, ease: "easeOut" as const }}
+          className="relative rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-xl sm:p-6 lg:p-7"
         >
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
-            <div className="flex-1 lg:flex-[1.2]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, scale: 0.96, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96, y: -10 }}
-                  transition={{ duration: 0.4, ease: "easeOut" as const }}
-                >
-                  <BrowserMockup gradient={project.gradient} />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          {/* Preview mockup */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`mockup-${active}`}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.35, ease: "easeOut" as const }}
+              >
+                <PreviewMockup gradient={project.gradient} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-            <div className="flex flex-col gap-6 lg:flex-[0.8]">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={prev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] transition-all hover:border-white/20 hover:bg-white/[0.06]"
-                >
-                  <ChevronUp size={16} className="text-white/70" />
-                </button>
-                <button
-                  onClick={next}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] transition-all hover:border-white/20 hover:bg-white/[0.06]"
-                >
-                  <ChevronDown size={16} className="text-white/70" />
-                </button>
-                <span className="ml-2 font-mono text-xs text-white/40">
-                  {String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-                </span>
+          {/* Prev/Next controls centered */}
+          <div className="mt-5 flex items-center justify-center gap-2">
+            <button
+              onClick={prev}
+              aria-label="Projet précédent"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.03] transition-all duration-200 hover:border-white/25 hover:bg-white/[0.07]"
+            >
+              <ChevronLeft size={15} className="text-white/75" />
+            </button>
+            <button
+              onClick={next}
+              aria-label="Projet suivant"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.03] transition-all duration-200 hover:border-white/25 hover:bg-white/[0.07]"
+            >
+              <ChevronRight size={15} className="text-white/75" />
+            </button>
+            <span className="ml-2 font-mono text-[11px] text-white/40">
+              {String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* Project info */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`info-${active}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeOut" as const }}
+              className="mt-5"
+            >
+              {/* Logo + title */}
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/25 bg-accent/10">
+                  <ProjectIcon size={16} className="text-accent" />
+                </div>
+                <h3 className="font-heading text-[24px] font-medium leading-none tracking-[-0.02em] text-white sm:text-[28px]">
+                  {project.title}
+                </h3>
               </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.35, ease: "easeOut" as const }}
+              {/* Tags */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11.5px] font-medium text-white/75"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Description */}
+              <p className="mt-4 text-[13.5px] leading-relaxed text-white/65 sm:text-[14px]">
+                {project.description}
+              </p>
+
+              {/* CTAs side-by-side */}
+              <div className="mt-5 grid grid-cols-2 gap-2.5">
+                <a
+                  href={project.url}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[13px] font-medium text-white/85 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.06]"
                 >
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-accent/20 bg-accent/10">
-                      <project.typeIcon size={15} className="text-accent" />
-                    </div>
-                    <span className="text-[13px] font-medium text-accent">
-                      {project.type}
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-[32px] font-medium leading-tight tracking-tight text-white lg:text-[38px]">
-                    {project.title}
-                  </h3>
-
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-white/75"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <p className="mt-5 text-[15px] leading-relaxed text-emphasis-dark">
-                    {project.description}
-                  </p>
-
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    <a href={project.url} className="pill pill-outline-dark">
-                      Détails du projet
-                      <ArrowUpRight size={14} />
-                    </a>
-                    <a href={project.url} className="pill pill-solid-accent">
-                      Voir le site live
-                      <ArrowUpRight size={14} />
-                    </a>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          <div className="mt-12 flex gap-3 overflow-x-auto pb-2">
-            {projects.map((p, i) => (
-              <button
-                key={p.title}
-                onClick={() => setActive(i)}
-                className={`shrink-0 rounded-2xl border px-5 py-3.5 text-left transition-all duration-300 ${
-                  i === active
-                    ? "border-accent/35 bg-accent/[0.08]"
-                    : "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]"
-                }`}
-              >
-                <p className={`text-[11px] font-medium uppercase tracking-wider ${i === active ? "text-accent" : "text-white/50"}`}>
-                  {p.type}
-                </p>
-                <p className={`mt-1 text-[14px] font-semibold ${i === active ? "text-white" : "text-white/80"}`}>
-                  {p.title}
-                </p>
-              </button>
-            ))}
-          </div>
+                  Détails du projet
+                  <ArrowUpRight size={13} />
+                </a>
+                <a
+                  href={project.url}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[13px] font-medium text-white/85 transition-all duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-white"
+                >
+                  Website live
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
+
+        {/* Dot indicators */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {projects.map((p, i) => (
+            <button
+              key={p.title}
+              onClick={() => setActive(i)}
+              aria-label={`Voir ${p.title}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === active ? "w-6 bg-accent" : "w-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

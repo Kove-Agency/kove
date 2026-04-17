@@ -3,12 +3,10 @@
 import { motion } from "framer-motion";
 
 const clients = [
-  "Maison Blanc",
-  "NovaTech",
-  "Studio Aura",
-  "FreshMarket",
-  "CloudSync",
-  "L'Atelier",
+  "Orbit Labs",
+  "Sélyne",
+  "Vach'et Nous",
+  "Extrad Solution",
 ];
 
 export function ClientsMarquee() {

@@ -413,102 +413,61 @@ export function Process() {
           </h2>
         </motion.div>
 
-        {/* Horizontal pipeline — always shows all 4 steps */}
+        {/* Minimal text tabs — no circles, no chrome bloat */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" as const }}
-          className="mt-14 lg:mt-20"
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" as const }}
+          className="mt-10 lg:mt-14"
         >
-          <div className="relative">
-            {/* Connecting line */}
-            <div className="absolute left-0 right-0 top-6 h-[2px] rounded-full bg-white/[0.06]" />
-            <motion.div
-              className="absolute left-0 top-6 h-[2px] rounded-full bg-gradient-to-r from-accent via-accent to-cyan-400"
-              initial={false}
-              animate={{
-                width: `${(active / (STEPS.length - 1)) * 100}%`,
-              }}
-              transition={{ duration: 0.7, ease: "easeInOut" as const }}
-            />
-
-            {/* Nodes */}
-            <div className="relative grid grid-cols-4 gap-2">
-              {STEPS.map((s, i) => {
-                const state = i < active ? "done" : i === active ? "active" : "todo";
-                const Icon = s.icon;
-                return (
-                  <button
-                    key={s.step}
-                    onClick={() => goTo(i)}
-                    className="group flex flex-col items-center gap-3 text-center"
+          <div className="mx-auto flex max-w-3xl items-center justify-between gap-1 border-b border-white/[0.06] sm:gap-3">
+            {STEPS.map((s, i) => {
+              const state = i < active ? "done" : i === active ? "active" : "todo";
+              return (
+                <button
+                  key={s.step}
+                  onClick={() => goTo(i)}
+                  className="group relative flex-1 pb-3 pt-2 text-center transition-colors duration-300"
+                  aria-current={state === "active" ? "step" : undefined}
+                >
+                  <span
+                    className={`block font-mono text-[10px] tracking-[0.22em] transition-colors duration-300 ${
+                      state === "active"
+                        ? "text-accent"
+                        : state === "done"
+                          ? "text-white/55"
+                          : "text-white/35 group-hover:text-white/60"
+                    }`}
                   >
-                    <div className="relative">
-                      {state === "active" && (
-                        <motion.div
-                          layoutId="process-halo"
-                          className="absolute -inset-2 rounded-full bg-accent/15 blur-md"
-                          transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                        />
-                      )}
-                      <div
-                        className={`relative flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-500 ${
-                          state === "active"
-                            ? "border-accent bg-accent text-white shadow-[0_0_0_4px_rgba(59,130,246,0.18)]"
-                            : state === "done"
-                              ? "border-accent/60 bg-accent/20 text-white"
-                              : "border-white/25 bg-white/[0.04] text-white group-hover:border-white/50 group-hover:bg-white/[0.08]"
-                        }`}
-                      >
-                        {state === "done" ? (
-                          <CheckCircle2 size={20} strokeWidth={2.4} />
-                        ) : (
-                          <Icon size={18} strokeWidth={2.2} />
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-0.5">
-                      <span
-                        className={`font-mono text-[10px] tracking-[0.2em] transition-colors duration-300 ${
-                          state === "active"
-                            ? "text-accent"
-                            : state === "done"
-                              ? "text-accent/80"
-                              : "text-white/80"
-                        }`}
-                      >
-                        STEP {s.step}
-                      </span>
-                      <span
-                        className={`text-[13px] font-medium transition-colors duration-300 sm:text-[14px] ${
-                          state === "active"
-                            ? "text-white"
-                            : state === "done"
-                              ? "text-white"
-                              : "text-white group-hover:text-white"
-                        }`}
-                      >
-                        {s.title}
-                      </span>
-                      <span
-                        className={`hidden text-[11px] sm:block ${
-                          state === "active" ? "text-white/75" : "text-white/60"
-                        }`}
-                      >
-                        {s.duration}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                    {s.step}
+                  </span>
+                  <span
+                    className={`mt-1 block text-[13px] font-medium transition-colors duration-300 sm:text-[14px] ${
+                      state === "active"
+                        ? "text-white"
+                        : state === "done"
+                          ? "text-white/70"
+                          : "text-white/45 group-hover:text-white/75"
+                    }`}
+                  >
+                    {s.title}
+                  </span>
+                  {state === "active" && (
+                    <motion.span
+                      layoutId="process-tab-underline"
+                      className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-accent"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Auto-advance progress bar under the row */}
-          <div className="mx-auto mt-8 h-[2px] w-[160px] overflow-hidden rounded-full bg-white/[0.06]">
+          <div className="mx-auto mt-4 h-[2px] w-[120px] overflow-hidden rounded-full bg-white/[0.05]">
             <div
-              className="h-full rounded-full bg-accent/80 transition-[width] ease-linear"
+              className="h-full rounded-full bg-accent/70 transition-[width] ease-linear"
               style={{
                 width: `${paused ? 100 : progress}%`,
                 transitionDuration: `${TICK_MS}ms`,

@@ -30,7 +30,7 @@ export function TechLines({ variant = "default", className = "" }: TechLinesProp
 
   return (
     <div
-      className={`techlines-wrap ${variantClass} ${className}`.trim()}
+      className={`techlines-wrap hidden lg:block ${variantClass} ${className}`.trim()}
       aria-hidden="true"
     >
       <span className="techlines-node left" />

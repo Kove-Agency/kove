@@ -247,19 +247,19 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(34, 211, 238, 0) 4%,
-    rgba(34, 211, 238, 0.22) 18%,
-    rgba(34, 211, 238, 0.22) 82%,
-    rgba(34, 211, 238, 0) 96%,
+    rgba(34, 211, 238, 0) 6%,
+    rgba(34, 211, 238, 0.14) 24%,
+    rgba(34, 211, 238, 0.14) 76%,
+    rgba(34, 211, 238, 0) 94%,
     transparent 100%
   );
-  box-shadow: 0 0 12px rgba(34, 211, 238, 0.12);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.07);
 }
 .techlines-wrap::before {
-  left: clamp(14px, 3.5vw, 48px);
+  left: clamp(28px, 5vw, 72px);
 }
 .techlines-wrap::after {
-  right: clamp(14px, 3.5vw, 48px);
+  right: clamp(28px, 5vw, 72px);
 }
 
 /* Animated node (pulse dot) travelling along each rail */
@@ -276,11 +276,11 @@
   pointer-events: none;
 }
 .techlines-wrap > .techlines-node.left {
-  left: clamp(11px, 3.5vw, 45px);
+  left: calc(clamp(28px, 5vw, 72px) - 2.5px);
   animation: techlines-travel 7s ease-in-out infinite;
 }
 .techlines-wrap > .techlines-node.right {
-  right: clamp(11px, 3.5vw, 45px);
+  right: calc(clamp(28px, 5vw, 72px) - 2.5px);
   animation: techlines-travel 7s ease-in-out infinite 3.5s;
 }
 @keyframes techlines-travel {
@@ -290,17 +290,17 @@
   100% { top: 92%; opacity: 0; }
 }
 
-/* Soft variant: dimmer rails for quieter sections (testimonials / footer) */
+/* Soft variant: barely-there rails for quieter sections */
 .techlines-wrap.techlines-soft::before,
 .techlines-wrap.techlines-soft::after {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(34, 211, 238, 0.12) 18%,
-    rgba(34, 211, 238, 0.12) 82%,
+    rgba(34, 211, 238, 0.08) 24%,
+    rgba(34, 211, 238, 0.08) 76%,
     transparent 100%
   );
-  box-shadow: 0 0 8px rgba(34, 211, 238, 0.08);
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.05);
 }
 
 /* Dense variant: brighter rails for hero / pricing */

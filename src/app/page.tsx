@@ -1,40 +1,59 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { ClientsMarquee } from "@/components/clients-marquee";
 import { Services } from "@/components/services";
 import { Process } from "@/components/process";
 import { Portfolio } from "@/components/portfolio";
+import { MidCTA } from "@/components/mid-cta";
 import { WhyUs } from "@/components/why-us";
 import { Testimonials } from "@/components/testimonials";
+import { Comparison } from "@/components/comparison";
 import { Pricing } from "@/components/pricing";
 import { FAQ } from "@/components/faq";
 import { CTAFinal } from "@/components/cta-final";
 import { Footer } from "@/components/footer";
 
+// Re-render at most once per hour so the hero's "delivered by [day]" stays
+// fresh without paying the cost of per-request dynamic rendering.
+export const revalidate = 3600;
+
+const FRENCH_WEEKDAYS = [
+  "dimanche",
+  "lundi",
+  "mardi",
+  "mercredi",
+  "jeudi",
+  "vendredi",
+  "samedi",
+] as const;
+
+/** Delivery promise = today + 2 days, in French (e.g. Fri → "dimanche"). */
+function getDeliveryDay(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + 2);
+  return FRENCH_WEEKDAYS[d.getDay()];
+}
+
 export default function Home() {
+  const deliveryDay = getDeliveryDay();
+
   return (
     <>
       <Navbar />
       <main>
-        {/* Hero dark */}
-        <Hero />
-        {/* Services LIGHT — "L'écosystème" 8lab */}
+        <Hero deliveryDay={deliveryDay} />
+        <ClientsMarquee />
         <Services />
-        {/* Process dark — pipeline live */}
         <Process />
-        {/* Portfolio dark — 2+ projets mis en avant */}
         <Portfolio />
-        {/* WhyUs LIGHT — "Pourquoi Kove" */}
+        <MidCTA />
         <WhyUs />
-        {/* Testimonials dark — 2 grosses cards */}
         <Testimonials />
-        {/* Pricing dark — "Rejoindre" */}
+        <Comparison />
         <Pricing />
-        {/* FAQ LIGHT */}
         <FAQ />
-        {/* CTA final dark — formulaire contact */}
         <CTAFinal />
       </main>
-      {/* Footer pur noir */}
       <Footer />
     </>
   );

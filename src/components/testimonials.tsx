@@ -10,15 +10,15 @@ const testimonials = [
     role: "Fondatrice, Maison Blanc",
     content:
       "On a lancé notre boutique en 3 jours. Résultat : +40% de conversion dès le premier mois. Le design est exactement ce qu'on voulait, sans aucun compromis. Kove a compris notre marque avant même qu'on termine le brief.",
-    initials: "SM",
+    avatar: "https://i.pravatar.cc/120?img=47",
     metric: "+40% conv.",
   },
   {
     name: "Thomas Dubois",
     role: "CEO, NovaTech",
     content:
-      "48h entre le brief et la mise en ligne. Notre landing page convertit 3x mieux que l'ancienne. Kove c'est le game changer qu'on attendait. On leur confie maintenant tous nos projets d'acquisition.",
-    initials: "TD",
+      "48h entre le brief et la mise en ligne. Notre landing page convertit 3x mieux que l'ancienne. On leur confie maintenant tous nos projets d'acquisition.",
+    avatar: "https://i.pravatar.cc/120?img=32",
     metric: "3x acq.",
   },
 ];
@@ -78,9 +78,16 @@ export function Testimonials() {
 
               <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/20 bg-accent/[0.08] font-heading text-sm font-semibold text-accent">
-                    {t.initials}
-                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={t.avatar}
+                    alt={`Photo de ${t.name}`}
+                    width={44}
+                    height={44}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-11 w-11 shrink-0 rounded-full border border-white/10 object-cover"
+                  />
                   <div>
                     <p className="text-[14px] font-medium text-white">{t.name}</p>
                     <p className="text-[12px] text-white/55">{t.role}</p>
@@ -94,38 +101,6 @@ export function Testimonials() {
           ))}
         </div>
 
-        {/* Clients marquee */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-20 overflow-hidden"
-        >
-          <p className="mb-6 text-center text-[11px] uppercase tracking-[0.18em] text-white/40">
-            Ils nous font confiance
-          </p>
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#0f0f0f] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#0f0f0f] to-transparent" />
-            <div className="animate-marquee flex gap-16 whitespace-nowrap">
-              {[...Array(2)].map((_, setIdx) => (
-                <div key={setIdx} className="flex shrink-0 gap-16">
-                  {["Maison Blanc", "NovaTech", "Studio Aura", "FreshMarket", "CloudSync", "L'Atelier"].map(
-                    (name) => (
-                      <span
-                        key={`${setIdx}-${name}`}
-                        className="font-heading text-xl font-semibold text-white/[0.14]"
-                      >
-                        {name}
-                      </span>
-                    )
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

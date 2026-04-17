@@ -32,6 +32,9 @@ export function TechLines({ variant = "default", className = "" }: TechLinesProp
     <div
       className={`techlines-wrap ${variantClass} ${className}`.trim()}
       aria-hidden="true"
-    />
+    >
+      <span className="techlines-node left" />
+      <span className="techlines-node right" />
+    </div>
   );
 }

@@ -1,7 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  Variants,
+} from "framer-motion";
 import {
   MessageSquare,
   Palette,
@@ -349,28 +355,87 @@ const STEP_DURATION_MS = 6500;
 const RESUME_AFTER_MS = 15000;
 const TICK_MS = 40;
 
+/* Direction-aware slide variants — spring physics, no linear easing */
+const SPRING = { type: "spring" as const, stiffness: 180, damping: 26, mass: 0.9 };
+
+const infoVariants: Variants = {
+  enter: (dir: number) => ({
+    opacity: 0,
+    x: dir * 28,
+    filter: "blur(8px)",
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: SPRING,
+  },
+  exit: (dir: number) => ({
+    opacity: 0,
+    x: dir * -28,
+    filter: "blur(8px)",
+    transition: { duration: 0.28, ease: [0.4, 0, 1, 1] as [number, number, number, number] },
+  }),
+};
+
+const mockupVariants: Variants = {
+  enter: (dir: number) => ({
+    opacity: 0,
+    x: dir * 48,
+    y: 8,
+    scale: 0.97,
+    rotateY: dir * 4,
+    filter: "blur(10px)",
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+    rotateY: 0,
+    filter: "blur(0px)",
+    transition: { ...SPRING, stiffness: 160 },
+  },
+  exit: (dir: number) => ({
+    opacity: 0,
+    x: dir * -48,
+    y: -8,
+    scale: 0.97,
+    rotateY: dir * -4,
+    filter: "blur(10px)",
+    transition: { duration: 0.32, ease: [0.4, 0, 1, 1] as [number, number, number, number] },
+  }),
+};
+
 export function Process() {
-  const [active, setActive] = useState(0);
+  const [[active, direction], setActiveDir] = useState<[number, number]>([0, 1]);
   const [paused, setPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const goTo = useCallback((i: number) => {
-    setActive(i);
+    setActiveDir(([prev]) => {
+      if (i === prev) return [prev, 0];
+      // Shortest-path direction (wrap-around aware)
+      const n = STEPS.length;
+      const forward = (i - prev + n) % n;
+      const backward = (prev - i + n) % n;
+      return [i, forward <= backward ? 1 : -1];
+    });
     setProgress(0);
     setPaused(true);
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     resumeTimer.current = setTimeout(() => setPaused(false), RESUME_AFTER_MS);
   }, []);
 
-  // Auto-advance loop — ALWAYS in order, cleanly reset between steps
   useEffect(() => {
     if (paused) return;
     const tick = setInterval(() => {
       setProgress((p) => {
         const next = p + (TICK_MS / STEP_DURATION_MS) * 100;
         if (next >= 100) {
-          setActive((a) => (a + 1) % STEPS.length);
+          setActiveDir(([prev]) => [(prev + 1) % STEPS.length, 1]);
           return 0;
         }
         return next;
@@ -385,16 +450,36 @@ export function Process() {
     };
   }, []);
 
+  // Gentle parallax on the mockup while the section scrolls past
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const mockupParallaxY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
   const CurrentMockup = STEPS[active].Mockup;
   const CurrentIcon = STEPS[active].icon;
+
+  // Glow follows the active step across the tabs
+  const glowLeft = useMemo(
+    () => `${((active + 0.5) / STEPS.length) * 100}%`,
+    [active],
+  );
 
   return (
     <section
       id="process"
+      ref={sectionRef}
       className="section-dark section-curve relative overflow-hidden py-28 lg:py-36"
     >
       <TechLines variant="default" />
-      <div className="pointer-events-none absolute right-[10%] top-1/4 h-[440px] w-[440px] rounded-full bg-accent/[0.05] blur-[140px]" />
+      {/* Ambient glow that shifts position based on active step */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[160px]"
+        animate={{ left: glowLeft }}
+        transition={{ type: "spring", stiffness: 60, damping: 22 }}
+      />
 
       <div className="relative mx-auto max-w-6xl px-6">
         {/* Header — compact */}
@@ -413,7 +498,7 @@ export function Process() {
           </h2>
         </motion.div>
 
-        {/* Minimal text tabs — no circles, no chrome bloat */}
+        {/* Tabs — text only, underline slides between them with spring */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -421,58 +506,70 @@ export function Process() {
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" as const }}
           className="mt-10 lg:mt-14"
         >
-          <div className="mx-auto flex max-w-3xl items-center justify-between gap-1 border-b border-white/[0.06] sm:gap-3">
-            {STEPS.map((s, i) => {
-              const state = i < active ? "done" : i === active ? "active" : "todo";
-              return (
-                <button
-                  key={s.step}
-                  onClick={() => goTo(i)}
-                  className="group relative flex-1 pb-3 pt-2 text-center transition-colors duration-300"
-                  aria-current={state === "active" ? "step" : undefined}
-                >
-                  <span
-                    className={`block font-mono text-[10px] tracking-[0.22em] transition-colors duration-300 ${
-                      state === "active"
-                        ? "text-accent"
-                        : state === "done"
-                          ? "text-white/55"
-                          : "text-white/35 group-hover:text-white/60"
-                    }`}
+          <div className="mx-auto max-w-3xl">
+            <div className="relative flex items-stretch justify-between gap-1 sm:gap-3">
+              {STEPS.map((s, i) => {
+                const state = i < active ? "done" : i === active ? "active" : "todo";
+                return (
+                  <button
+                    key={s.step}
+                    onClick={() => goTo(i)}
+                    className="group relative flex-1 pb-4 pt-2 text-center"
+                    aria-current={state === "active" ? "step" : undefined}
                   >
-                    {s.step}
-                  </span>
-                  <span
-                    className={`mt-1 block text-[13px] font-medium transition-colors duration-300 sm:text-[14px] ${
-                      state === "active"
-                        ? "text-white"
-                        : state === "done"
-                          ? "text-white/70"
-                          : "text-white/45 group-hover:text-white/75"
-                    }`}
-                  >
-                    {s.title}
-                  </span>
-                  {state === "active" && (
                     <motion.span
-                      layoutId="process-tab-underline"
-                      className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-accent"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
+                      animate={{
+                        color:
+                          state === "active"
+                            ? "#3b82f6"
+                            : state === "done"
+                              ? "rgba(255,255,255,0.55)"
+                              : "rgba(255,255,255,0.35)",
+                      }}
+                      transition={{ duration: 0.35 }}
+                      className="block font-mono text-[10px] tracking-[0.22em]"
+                    >
+                      {s.step}
+                    </motion.span>
+                    <motion.span
+                      animate={{
+                        color:
+                          state === "active"
+                            ? "rgb(255,255,255)"
+                            : state === "done"
+                              ? "rgba(255,255,255,0.7)"
+                              : "rgba(255,255,255,0.45)",
+                      }}
+                      transition={{ duration: 0.35 }}
+                      className="mt-1 block text-[13px] font-medium sm:text-[14px]"
+                    >
+                      {s.title}
+                    </motion.span>
+                  </button>
+                );
+              })}
 
-          <div className="mx-auto mt-4 h-[2px] w-[120px] overflow-hidden rounded-full bg-white/[0.05]">
-            <div
-              className="h-full rounded-full bg-accent/70 transition-[width] ease-linear"
-              style={{
-                width: `${paused ? 100 : progress}%`,
-                transitionDuration: `${TICK_MS}ms`,
-              }}
-            />
+              {/* Shared underline — slides with spring physics */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/[0.06]" />
+              <motion.div
+                className="pointer-events-none absolute bottom-0 h-[2px] rounded-full bg-accent shadow-[0_0_12px_rgba(59,130,246,0.55)]"
+                animate={{
+                  left: `${(active / STEPS.length) * 100}%`,
+                  width: `${100 / STEPS.length}%`,
+                }}
+                transition={{ type: "spring", stiffness: 220, damping: 28 }}
+              />
+              {/* Progress within the active tab */}
+              <motion.div
+                className="pointer-events-none absolute bottom-0 h-[2px] rounded-full bg-white/25"
+                animate={{
+                  left: `${(active / STEPS.length) * 100}%`,
+                  width: `${(progress / 100) * (100 / STEPS.length)}%`,
+                  opacity: paused ? 0 : 0.6,
+                }}
+                transition={{ duration: 0.2 }}
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -484,28 +581,43 @@ export function Process() {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" as const }}
           className="mt-14"
         >
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          <motion.div
+            layout
+            className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16"
+            style={{ perspective: "1400px" }}
+          >
             {/* Left — step info */}
             <div className="relative min-h-[280px]">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="popLayout" custom={direction} initial={false}>
                 <motion.div
                   key={`info-${active}`}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35, ease: "easeOut" as const }}
+                  custom={direction}
+                  variants={infoVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   className="flex h-full flex-col"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-accent/25 bg-accent/10">
+                    <motion.div
+                      initial={{ scale: 0.85, rotate: -8 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ type: "spring", stiffness: 380, damping: 20 }}
+                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-accent/25 bg-accent/10"
+                    >
                       <CurrentIcon size={18} className="text-accent" />
-                    </div>
+                    </motion.div>
                     <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-mono tracking-[0.2em] text-white/60">
                       STEP {STEPS[active].step}
                     </span>
-                    <span className="rounded-full border border-accent/20 bg-accent/[0.06] px-3 py-1 text-[11px] font-medium text-accent">
+                    <motion.span
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.08, type: "spring", stiffness: 300, damping: 22 }}
+                      className="rounded-full border border-accent/20 bg-accent/[0.06] px-3 py-1 text-[11px] font-medium text-accent"
+                    >
                       {STEPS[active].duration}
-                    </span>
+                    </motion.span>
                   </div>
                   <h3 className="mt-6 font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white">
                     {STEPS[active].short}
@@ -516,9 +628,11 @@ export function Process() {
 
                   <div className="mt-auto pt-8">
                     <div className="flex items-center gap-2 text-[12px] text-white/50">
-                      <span className="font-mono">{String(active + 1).padStart(2, "0")}</span>
+                      <span className="font-mono tabular-nums">
+                        {String(active + 1).padStart(2, "0")}
+                      </span>
                       <span className="h-px w-8 bg-white/20" />
-                      <span className="font-mono">04</span>
+                      <span className="font-mono tabular-nums">04</span>
                     </div>
                   </div>
                 </motion.div>
@@ -526,20 +640,25 @@ export function Process() {
             </div>
 
             {/* Right — mockup */}
-            <div className="relative">
-              <AnimatePresence mode="wait">
+            <motion.div
+              className="relative will-change-transform"
+              style={{ y: mockupParallaxY, transformStyle: "preserve-3d" }}
+            >
+              <AnimatePresence mode="popLayout" custom={direction} initial={false}>
                 <motion.div
                   key={`mockup-${active}`}
-                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -12, scale: 0.98 }}
-                  transition={{ duration: 0.45, ease: "easeOut" as const }}
+                  custom={direction}
+                  variants={mockupVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
                 >
                   <CurrentMockup />
                 </motion.div>
               </AnimatePresence>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

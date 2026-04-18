@@ -88,7 +88,12 @@ const PLANS: Plan[] = [
 ];
 
 const UNIFIED_CTA_LABEL = "Discuter de mon projet";
-const UNIFIED_CTA_HREF = "#contact";
+const UNIFIED_CTA_HREF =
+  "https://calendly.com/kove/nouvelle-reunion" +
+  "?hide_gdpr_banner=1" +
+  "&background_color=0f0f0f" +
+  "&text_color=ffffff" +
+  "&primary_color=3b82f6";
 
 /* ------------------------------------------------------------------ */
 /* PLAN CARD                                                           */
@@ -219,6 +224,8 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         {/* Unified CTA — all plans lead to the same contact funnel */}
         <motion.a
           href={UNIFIED_CTA_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 380, damping: 26 }}

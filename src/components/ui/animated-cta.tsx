@@ -1,19 +1,18 @@
 "use client";
 
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * Pulsor-inspired animated CTA.
  *
- * — Dashed border that marches around the button (SVG stroke-dashoffset loop).
- * — Per-character label with a vertical flip on hover (stagger driven by index).
- * — Optional icon with diagonal swap on hover (slides out top-right, replacement
- *   slides in from bottom-left).
+ * — Marching-ants dashed border (SVG viewBox + stroke-dashoffset loop).
+ * — Per-character vertical flip on hover (stagger driven by index).
+ * — Optional icon with diagonal / slide motion on hover.
  *
- * Usage:
- *   <AnimatedCTA href="#contact" icon={<ArrowUpRight size={16} />} variant="solid">
- *     Réserver un appel
- *   </AnimatedCTA>
+ * Single-element implementation: the interactive element (`<a>` or `<button>`)
+ * IS the group container — no nested wrappers that could misalign on mobile
+ * or create halo/tap-highlight bleed.
  */
 
 type Variant = "solid" | "outline";
@@ -37,7 +36,7 @@ const EASING = "cubic-bezier(0.65, 0.04, 0.36, 1)";
 function StaggerLabel({ text }: { text: string }) {
   const chars = Array.from(text);
   return (
-    <span className="relative inline-flex items-baseline whitespace-pre leading-none">
+    <span className="relative inline-flex items-center whitespace-pre leading-none">
       {chars.map((c, i) => {
         const display = c === " " ? "\u00A0" : c;
         const style = {
@@ -45,11 +44,11 @@ function StaggerLabel({ text }: { text: string }) {
           transitionDuration: `${TRANS_MS}ms`,
           transitionTimingFunction: EASING,
           transitionProperty: "transform",
-        };
+        } as const;
         return (
           <span
             key={`${c}-${i}`}
-            className="relative inline-block overflow-hidden"
+            className="relative inline-block overflow-hidden align-middle"
             style={{ height: "1em", lineHeight: 1 }}
             aria-hidden={i > 0 ? "true" : undefined}
           >
@@ -79,8 +78,6 @@ function AnimatedIcon({
   icon: ReactNode;
   motion: "diagonal" | "slide";
 }) {
-  // Diagonal: arrow goes up-and-right, replacement enters from bottom-left.
-  // Slide: arrow goes right, replacement enters from the left.
   const outClass =
     motion === "diagonal"
       ? "group-hover:-translate-y-full group-hover:translate-x-full"
@@ -107,6 +104,36 @@ function AnimatedIcon({
   );
 }
 
+function DashedBorder({ opacity }: { opacity: number }) {
+  // viewBox with explicit inset (x=0.5/y=0.5) keeps the 1px stroke fully inside
+  // the container no matter the rendered size. preserveAspectRatio="none"
+  // stretches the rect; vectorEffect keeps the stroke width a stable 1px.
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 h-full w-full"
+      viewBox="0 0 300 56"
+      preserveAspectRatio="none"
+    >
+      <rect
+        x="0.5"
+        y="0.5"
+        width="299"
+        height="55"
+        rx="28"
+        ry="28"
+        fill="none"
+        stroke="currentColor"
+        strokeOpacity={opacity}
+        strokeWidth="1"
+        strokeDasharray="3 5"
+        vectorEffect="non-scaling-stroke"
+        style={{ animation: "dash-march 1.8s linear infinite" }}
+      />
+    </svg>
+  );
+}
+
 export function AnimatedCTA({
   children,
   href,
@@ -122,48 +149,28 @@ export function AnimatedCTA({
       ? "bg-[#0A0A0A] text-white hover:bg-[#141417]"
       : "bg-white text-[#0A0A0A] hover:bg-white/95";
 
-  const borderOpacity = variant === "solid" ? "opacity-60" : "opacity-45";
+  const borderOpacity = variant === "solid" ? 0.6 : 0.45;
 
-  const inner = (
-    <span
-      className={`group relative inline-flex h-[54px] min-w-[200px] items-center justify-center gap-2.5 overflow-hidden rounded-full px-7 text-[14.5px] font-medium tracking-[-0.01em] transition-colors duration-300 ${surface} ${className}`}
-    >
-      {/* Animated dashed border */}
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 ${borderOpacity}`}
-      >
-        <svg
-          className="h-full w-full overflow-visible"
-          preserveAspectRatio="none"
-        >
-          <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
-            rx="9999"
-            ry="9999"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeDasharray="3 5"
-            vectorEffect="non-scaling-stroke"
-            style={{ animation: "dash-march 1.8s linear infinite" }}
-          />
-        </svg>
-      </span>
+  const shared = cn(
+    "group relative inline-flex h-[56px] w-full max-w-[280px] items-center justify-center gap-2.5 overflow-hidden rounded-full px-7 text-[14.5px] font-medium tracking-[-0.01em] outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:w-auto sm:min-w-[220px]",
+    surface,
+    className,
+  );
 
-      <span className="relative z-10 inline-flex items-baseline">
+  const tapHighlight = { WebkitTapHighlightColor: "transparent" } as const;
+
+  const content = (
+    <>
+      <DashedBorder opacity={borderOpacity} />
+      <span className="relative z-10 inline-flex items-center">
         <StaggerLabel text={children} />
       </span>
-
       {icon && (
-        <span className="relative z-10 inline-flex">
+        <span className="relative z-10 inline-flex items-center">
           <AnimatedIcon icon={icon} motion={iconMotion} />
         </span>
       )}
-    </span>
+    </>
   );
 
   if (href) {
@@ -171,9 +178,10 @@ export function AnimatedCTA({
       <a
         href={href}
         aria-label={ariaLabel ?? children}
-        className="inline-flex outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-full"
+        className={shared}
+        style={tapHighlight}
       >
-        {inner}
+        {content}
       </a>
     );
   }
@@ -183,9 +191,10 @@ export function AnimatedCTA({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel ?? children}
-      className="inline-flex outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-full"
+      className={shared}
+      style={tapHighlight}
     >
-      {inner}
+      {content}
     </button>
   );
 }

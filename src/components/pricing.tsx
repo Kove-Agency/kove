@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import NumberFlow from "@number-flow/react";
 import { Check, Rocket, Sparkles, Zap, ArrowRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -143,6 +143,192 @@ function PricingSwitch({
 }
 
 /* ------------------------------------------------------------------ */
+/* PLAN CARD                                                           */
+/* ------------------------------------------------------------------ */
+
+const featureListVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.055, delayChildren: 0.18 },
+  },
+};
+
+const featureItemVariants: Variants = {
+  hidden: { opacity: 0, x: -6 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 260, damping: 24 },
+  },
+};
+
+function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"; index: number }) {
+  const Icon = plan.icon;
+  const Animation = plan.Animation;
+  const price = mode === "upfront" ? plan.priceUpfront : plan.priceSplit;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32, filter: "blur(12px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.12,
+        ease: [0.22, 0.61, 0.36, 1],
+      }}
+      className="h-full"
+    >
+      <motion.div
+        whileHover={{ y: -4, transition: { type: "spring", stiffness: 240, damping: 22 } }}
+        whileTap={{ scale: 0.985 }}
+        className={cn(
+          "group relative flex h-full flex-col overflow-hidden rounded-[28px] border p-8 backdrop-blur-xl transition-[border-color,background,box-shadow] duration-500 lg:p-10",
+          plan.popular
+            ? "border-accent/35 bg-gradient-to-b from-accent/[0.09] via-white/[0.02] to-transparent shadow-[0_40px_100px_-30px_rgba(59,130,246,0.35)]"
+            : "border-white/[0.08] bg-white/[0.02] hover:border-white/[0.16] hover:bg-white/[0.04] hover:shadow-[0_30px_80px_-40px_rgba(255,255,255,0.18)]",
+        )}
+      >
+        {/* Breathing accent halo — popular only */}
+        {plan.popular && (
+          <>
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl"
+              animate={{ opacity: [0.35, 0.6, 0.35], scale: [0.95, 1.05, 0.95] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+          </>
+        )}
+
+        {/* Cursor-following spotlight — non-popular cards */}
+        {!plan.popular && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background:
+                "radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(255,255,255,0.06), transparent 60%)",
+            }}
+          />
+        )}
+
+        {/* Animated illustration — what the plan delivers */}
+        <div className="relative mb-6">
+          <Animation />
+          {plan.popular && (
+            <motion.span
+              layoutId="popular-badge"
+              className="absolute -top-2 right-2 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-[11px] font-medium text-accent backdrop-blur-md"
+              animate={{ y: [0, -2, 0] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles size={11} />
+              Populaire
+            </motion.span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <motion.div
+            whileHover={{ rotate: [0, -6, 6, 0], transition: { duration: 0.55 } }}
+            className={cn(
+              "flex h-9 w-9 items-center justify-center rounded-xl border transition-colors duration-300",
+              plan.popular
+                ? "border-accent/30 bg-accent/15 text-accent"
+                : "border-white/[0.08] bg-white/[0.03] text-white/70",
+            )}
+          >
+            <Icon size={16} strokeWidth={2.2} />
+          </motion.div>
+          <h3 className="font-heading text-[28px] font-medium leading-none tracking-[-0.02em] text-white">
+            {plan.name}
+          </h3>
+        </div>
+        <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">{plan.tagline}</p>
+
+        {/* Price */}
+        <div className="mt-8 flex items-baseline gap-2">
+          <span className="font-heading text-[52px] font-medium leading-none tracking-[-0.04em] text-white">
+            <NumberFlow
+              value={price}
+              format={{ useGrouping: true }}
+              transformTiming={{ duration: 650, easing: "cubic-bezier(0.22,0.61,0.36,1)" }}
+            />
+            <span className="ml-1 text-[28px] text-white/80">€</span>
+          </span>
+          <span className="text-[13px] text-white/45">
+            {mode === "upfront" ? "HT" : "× 3 mois"}
+          </span>
+        </div>
+        <p className="mt-1 text-[11.5px] text-white/40">
+          {mode === "upfront"
+            ? "Paiement unique · -10% inclus"
+            : `Soit ${plan.priceSplit * 3}€ HT au total`}
+        </p>
+
+        {/* CTA */}
+        <motion.button
+          whileHover={{ scale: 1.015 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 380, damping: 26 }}
+          className={cn(
+            "pill mt-8 w-full justify-center gap-2 py-4 text-[14px]",
+            plan.popular ? "pill-solid-accent" : "pill-outline-dark hover:bg-white/[0.08]",
+          )}
+        >
+          {plan.buttonText}
+          <motion.span
+            className="inline-flex"
+            whileHover={{ x: 4 }}
+            transition={{ type: "spring", stiffness: 400, damping: 28 }}
+          >
+            <ArrowRight size={15} />
+          </motion.span>
+        </motion.button>
+
+        {/* Features */}
+        <div className="mt-8 border-t border-white/[0.06] pt-6">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/40">
+            {plan.includesTitle}
+          </p>
+          <motion.ul
+            variants={featureListVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+            className="mt-5 space-y-3"
+          >
+            {plan.features.map((f) => (
+              <motion.li
+                key={f}
+                variants={featureItemVariants}
+                className="flex items-start gap-3"
+              >
+                <motion.span
+                  whileHover={{ scale: 1.15, rotate: -6 }}
+                  transition={{ type: "spring", stiffness: 480, damping: 18 }}
+                  className={cn(
+                    "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
+                    plan.popular
+                      ? "bg-accent/20 text-accent"
+                      : "bg-white/[0.06] text-white/70",
+                  )}
+                >
+                  <Check size={11} strokeWidth={3} />
+                </motion.span>
+                <span className="text-[13.5px] leading-relaxed text-white/70">{f}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* MAIN                                                                */
 /* ------------------------------------------------------------------ */
 
@@ -162,6 +348,13 @@ export function Pricing() {
         ease: [0.22, 0.61, 0.36, 1] as [number, number, number, number],
       },
     }),
+  };
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const t = e.currentTarget;
+    const r = t.getBoundingClientRect();
+    t.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    t.style.setProperty("--my", `${e.clientY - r.top}px`);
   };
 
   return (
@@ -228,117 +421,13 @@ export function Pricing() {
         </div>
 
         {/* Plans */}
-        <div className="mt-16 grid gap-5 md:grid-cols-3 md:gap-6">
-          {PLANS.map((plan, index) => {
-            const Icon = plan.icon;
-            const Animation = plan.Animation;
-            const price = mode === "upfront" ? plan.priceUpfront : plan.priceSplit;
-            return (
-              <TimelineContent
-                key={plan.id}
-                as="div"
-                animationNum={3 + index}
-                timelineRef={sectionRef}
-                customVariants={revealVariants}
-              >
-                <div
-                  className={cn(
-                    "group relative flex h-full flex-col overflow-hidden rounded-[28px] border p-8 backdrop-blur-xl transition-all duration-500 lg:p-10",
-                    plan.popular
-                      ? "border-accent/35 bg-gradient-to-b from-accent/[0.09] via-white/[0.02] to-transparent shadow-[0_40px_100px_-30px_rgba(59,130,246,0.35)]"
-                      : "border-white/[0.08] bg-white/[0.02] hover:border-white/[0.15] hover:bg-white/[0.035]",
-                  )}
-                >
-                  {plan.popular && (
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
-                  )}
-
-                  {/* Animated illustration — what the plan delivers */}
-                  <div className="relative mb-6">
-                    <Animation />
-                    {plan.popular && (
-                      <span className="absolute -top-2 right-2 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-[11px] font-medium text-accent backdrop-blur-md">
-                        <Sparkles size={11} />
-                        Populaire
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={cn(
-                        "flex h-9 w-9 items-center justify-center rounded-xl border transition-colors duration-300",
-                        plan.popular
-                          ? "border-accent/30 bg-accent/15 text-accent"
-                          : "border-white/[0.08] bg-white/[0.03] text-white/70",
-                      )}
-                    >
-                      <Icon size={16} strokeWidth={2.2} />
-                    </div>
-                    <h3 className="font-heading text-[28px] font-medium leading-none tracking-[-0.02em] text-white">
-                      {plan.name}
-                    </h3>
-                  </div>
-                  <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">{plan.tagline}</p>
-
-                  {/* Price */}
-                  <div className="mt-8 flex items-baseline gap-2">
-                    <span className="font-heading text-[52px] font-medium leading-none tracking-[-0.04em] text-white">
-                      <NumberFlow
-                        value={price}
-                        format={{ useGrouping: true }}
-                        transformTiming={{ duration: 650, easing: "cubic-bezier(0.22,0.61,0.36,1)" }}
-                      />
-                      <span className="ml-1 text-[28px] text-white/80">€</span>
-                    </span>
-                    <span className="text-[13px] text-white/45">
-                      {mode === "upfront" ? "HT" : "× 3 mois"}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[11.5px] text-white/40">
-                    {mode === "upfront"
-                      ? "Paiement unique · -10% inclus"
-                      : `Soit ${plan.priceSplit * 3}€ HT au total`}
-                  </p>
-
-                  {/* CTA */}
-                  <button
-                    className={cn(
-                      "pill mt-8 w-full justify-center gap-2 py-4 text-[14px]",
-                      plan.popular ? "pill-solid-accent" : "pill-outline-dark hover:bg-white/[0.08]",
-                    )}
-                  >
-                    {plan.buttonText}
-                    <ArrowRight size={15} />
-                  </button>
-
-                  {/* Features */}
-                  <div className="mt-8 border-t border-white/[0.06] pt-6">
-                    <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/40">
-                      {plan.includesTitle}
-                    </p>
-                    <ul className="mt-5 space-y-3">
-                      {plan.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3">
-                          <span
-                            className={cn(
-                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
-                              plan.popular
-                                ? "bg-accent/20 text-accent"
-                                : "bg-white/[0.06] text-white/70",
-                            )}
-                          >
-                            <Check size={11} strokeWidth={3} />
-                          </span>
-                          <span className="text-[13.5px] leading-relaxed text-white/70">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </TimelineContent>
-            );
-          })}
+        <div
+          className="mt-16 grid gap-5 md:grid-cols-3 md:gap-6"
+          onMouseMove={handleCardMouseMove}
+        >
+          {PLANS.map((plan, index) => (
+            <PlanCard key={plan.id} plan={plan} mode={mode} index={index} />
+          ))}
         </div>
 
         {/* Trust bar */}

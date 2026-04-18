@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import NumberFlow from "@number-flow/react";
 import { Check, Rocket, Sparkles, Zap, ArrowRight, Star } from "lucide-react";
@@ -96,6 +96,38 @@ const UNIFIED_CTA_HREF =
   "&primary_color=3b82f6";
 
 /* ------------------------------------------------------------------ */
+/* MEMOIZED INFINITE-ANIMATION LEAVES                                  */
+/* Isolate perpetual motion so it doesn't re-render the parent card    */
+/* ------------------------------------------------------------------ */
+
+const BreathingHalo = memo(function BreathingHalo() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl"
+      style={{ willChange: "transform, opacity" }}
+      animate={{ opacity: [0.35, 0.6, 0.35], scale: [0.95, 1.05, 0.95] }}
+      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+    />
+  );
+});
+
+const PopularBadge = memo(function PopularBadge() {
+  return (
+    <motion.span
+      layoutId="popular-badge"
+      className="absolute -top-2 right-2 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-[11px] font-medium text-accent backdrop-blur-md"
+      style={{ willChange: "transform" }}
+      animate={{ y: [0, -2, 0] }}
+      transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <Sparkles size={11} />
+      Populaire
+    </motion.span>
+  );
+});
+
+/* ------------------------------------------------------------------ */
 /* PLAN CARD                                                           */
 /* ------------------------------------------------------------------ */
 
@@ -115,7 +147,7 @@ const featureItemVariants: Variants = {
   },
 };
 
-function PlanCard({ plan, index }: { plan: Plan; index: number }) {
+const PlanCard = memo(function PlanCard({ plan, index }: { plan: Plan; index: number }) {
   const Icon = plan.icon;
   const Animation = plan.Animation;
 
@@ -135,21 +167,16 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         whileHover={{ y: -4, transition: { type: "spring", stiffness: 240, damping: 22 } }}
         whileTap={{ scale: 0.985 }}
         className={cn(
-          "group relative flex h-full flex-col overflow-hidden rounded-[28px] border p-8 backdrop-blur-xl transition-[border-color,background,box-shadow] duration-500 lg:p-10",
+          "group relative flex h-full flex-col overflow-hidden rounded-[28px] border p-8 backdrop-blur-md transition-[border-color,background,box-shadow] duration-500 lg:p-10",
           plan.popular
             ? "border-accent/35 bg-gradient-to-b from-accent/[0.09] via-white/[0.02] to-transparent shadow-[0_40px_100px_-30px_rgba(59,130,246,0.35)]"
             : "border-white/[0.08] bg-white/[0.02] hover:border-white/[0.16] hover:bg-white/[0.04] hover:shadow-[0_30px_80px_-40px_rgba(255,255,255,0.18)]",
         )}
       >
-        {/* Breathing accent halo — popular only */}
+        {/* Breathing accent halo — popular only (memoized leaf) */}
         {plan.popular && (
           <>
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl"
-              animate={{ opacity: [0.35, 0.6, 0.35], scale: [0.95, 1.05, 0.95] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <BreathingHalo />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
           </>
         )}
@@ -169,17 +196,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         {/* Animated illustration — what the plan delivers */}
         <div className="relative mb-6">
           <Animation />
-          {plan.popular && (
-            <motion.span
-              layoutId="popular-badge"
-              className="absolute -top-2 right-2 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-[11px] font-medium text-accent backdrop-blur-md"
-              animate={{ y: [0, -2, 0] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Sparkles size={11} />
-              Populaire
-            </motion.span>
-          )}
+          {plan.popular && <PopularBadge />}
         </div>
 
         <div className="flex items-center gap-3">
@@ -282,7 +299,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
       </motion.div>
     </motion.div>
   );
-}
+});
 
 /* ------------------------------------------------------------------ */
 /* MAIN                                                                */

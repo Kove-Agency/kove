@@ -477,6 +477,7 @@ export function Process() {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute top-1/3 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[160px]"
+        style={{ willChange: "left" }}
         animate={{ left: glowLeft }}
         transition={{ type: "spring", stiffness: 60, damping: 22 }}
       />
@@ -549,25 +550,28 @@ export function Process() {
                 );
               })}
 
-              {/* Shared underline — slides with spring physics */}
+              {/* Shared underline — slides with spring physics (transform-only) */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/[0.06]" />
               <motion.div
-                className="pointer-events-none absolute bottom-0 h-[2px] rounded-full bg-accent shadow-[0_0_12px_rgba(59,130,246,0.55)]"
-                animate={{
-                  left: `${(active / STEPS.length) * 100}%`,
-                  width: `${100 / STEPS.length}%`,
-                }}
+                className="pointer-events-none absolute bottom-0 left-0 h-[2px] rounded-full bg-accent shadow-[0_0_12px_rgba(59,130,246,0.55)]"
+                style={{ width: `${100 / STEPS.length}%`, willChange: "transform" }}
+                animate={{ x: `${active * 100}%` }}
                 transition={{ type: "spring", stiffness: 220, damping: 28 }}
               />
-              {/* Progress within the active tab */}
+              {/* Progress within the active tab (scaleX instead of width) */}
               <motion.div
-                className="pointer-events-none absolute bottom-0 h-[2px] rounded-full bg-white/25"
+                className="pointer-events-none absolute bottom-0 left-0 h-[2px] origin-left rounded-full bg-white/25"
+                style={{ width: `${100 / STEPS.length}%`, willChange: "transform, opacity" }}
                 animate={{
-                  left: `${(active / STEPS.length) * 100}%`,
-                  width: `${(progress / 100) * (100 / STEPS.length)}%`,
+                  x: `${active * 100}%`,
+                  scaleX: progress / 100,
                   opacity: paused ? 0 : 0.6,
                 }}
-                transition={{ duration: 0.2 }}
+                transition={{
+                  x: { type: "spring", stiffness: 220, damping: 28 },
+                  scaleX: { duration: 0.2, ease: "linear" },
+                  opacity: { duration: 0.2 },
+                }}
               />
             </div>
           </div>

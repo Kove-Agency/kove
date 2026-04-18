@@ -136,12 +136,34 @@ export function AnimatedShaderBackground({
     scene.add(mesh);
 
     let frameId = 0;
+    let isVisible = true;
+    let isTabVisible = typeof document !== "undefined" ? !document.hidden : true;
+
     const animate = () => {
-      material.uniforms.iTime.value += 0.016;
-      renderer.render(scene, camera);
+      // Skip render when the section is offscreen or the tab is backgrounded.
+      // Saves significant GPU on scroll-through and tab-switch.
+      if (isVisible && isTabVisible) {
+        material.uniforms.iTime.value += 0.016;
+        renderer.render(scene, camera);
+      }
       frameId = requestAnimationFrame(animate);
     };
     animate();
+
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          isVisible = entry.isIntersecting;
+        }
+      },
+      { threshold: 0, rootMargin: "100px" },
+    );
+    intersectionObserver.observe(container);
+
+    const onVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -158,7 +180,9 @@ export function AnimatedShaderBackground({
 
     return () => {
       cancelAnimationFrame(frameId);
+      intersectionObserver.disconnect();
       resizeObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       if (canvas.parentNode === container) {
         container.removeChild(canvas);
       }

@@ -146,7 +146,7 @@ export function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.55, ease: "easeOut" as const }}
-          className="relative rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-xl sm:p-6 lg:p-7"
+          className="relative rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-md sm:p-6 lg:p-7"
         >
           <div className="relative">
             <AnimatePresence mode="wait">

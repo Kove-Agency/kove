@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import NumberFlow from "@number-flow/react";
 import { Check, Rocket, Sparkles, Zap, ArrowRight, Star } from "lucide-react";
@@ -24,9 +24,7 @@ type Plan = {
   icon: typeof Rocket;
   Animation: React.ComponentType;
   tagline: string;
-  priceUpfront: number;
-  priceSplit: number;
-  buttonText: string;
+  priceFrom: number;
   features: string[];
   includesTitle: string;
   popular?: boolean;
@@ -39,9 +37,7 @@ const PLANS: Plan[] = [
     icon: Zap,
     Animation: LandingAnim,
     tagline: "Pour valider une offre rapidement, capter des leads, ou lancer un produit.",
-    priceUpfront: 890,
-    priceSplit: 330,
-    buttonText: "Réserver ma place",
+    priceFrom: 890,
     features: [
       "1 page responsive premium",
       "Design sur mesure Figma",
@@ -58,9 +54,7 @@ const PLANS: Plan[] = [
     icon: Sparkles,
     Animation: VitrineAnim,
     tagline: "Pour construire une marque crédible et convertir vos visiteurs en clients.",
-    priceUpfront: 1890,
-    priceSplit: 660,
-    buttonText: "Lancer mon projet",
+    priceFrom: 1890,
     popular: true,
     features: [
       "Jusqu'à 7 pages sur mesure",
@@ -79,9 +73,7 @@ const PLANS: Plan[] = [
     icon: Rocket,
     Animation: EcommerceAnim,
     tagline: "Pour scaler votre marque, automatiser votre stack et maximiser le CA.",
-    priceUpfront: 3490,
-    priceSplit: 1200,
-    buttonText: "Discuter du projet",
+    priceFrom: 3490,
     features: [
       "Shopify 2.0 ou Next Commerce",
       "Design e-commerce sur mesure",
@@ -95,52 +87,8 @@ const PLANS: Plan[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/* PRICING SWITCH                                                      */
-/* ------------------------------------------------------------------ */
-
-function PricingSwitch({
-  value,
-  onChange,
-}: {
-  value: "upfront" | "split";
-  onChange: (v: "upfront" | "split") => void;
-}) {
-  return (
-    <div className="relative z-10 inline-flex rounded-full border border-white/[0.08] bg-white/[0.03] p-1 backdrop-blur-xl">
-      {[
-        { id: "upfront" as const, label: "Comptant", badge: "-10%" },
-        { id: "split" as const, label: "3× sans frais" },
-      ].map((opt) => {
-        const active = value === opt.id;
-        return (
-          <button
-            key={opt.id}
-            onClick={() => onChange(opt.id)}
-            className={cn(
-              "relative z-10 flex h-11 items-center gap-2 rounded-full px-5 text-[13px] font-medium transition-colors duration-300",
-              active ? "text-white" : "text-white/55 hover:text-white/80",
-            )}
-          >
-            {active && (
-              <motion.span
-                layoutId="pricing-switch-pill"
-                className="absolute inset-0 -z-0 rounded-full bg-gradient-to-t from-[#2563eb] via-[#3b82f6] to-[#60a5fa] shadow-[0_0_0_1px_rgba(59,130,246,0.45),0_10px_28px_-8px_rgba(59,130,246,0.55)]"
-                transition={{ type: "spring", stiffness: 420, damping: 34 }}
-              />
-            )}
-            <span className="relative">{opt.label}</span>
-            {opt.badge && (
-              <span className="relative rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold text-white">
-                {opt.badge}
-              </span>
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
+const UNIFIED_CTA_LABEL = "Discuter de mon projet";
+const UNIFIED_CTA_HREF = "#contact";
 
 /* ------------------------------------------------------------------ */
 /* PLAN CARD                                                           */
@@ -162,10 +110,9 @@ const featureItemVariants: Variants = {
   },
 };
 
-function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"; index: number }) {
+function PlanCard({ plan, index }: { plan: Plan; index: number }) {
   const Icon = plan.icon;
   const Animation = plan.Animation;
-  const price = mode === "upfront" ? plan.priceUpfront : plan.priceSplit;
 
   return (
     <motion.div
@@ -248,28 +195,30 @@ function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"
         </div>
         <p className="mt-3 text-[13.5px] leading-relaxed text-white/55">{plan.tagline}</p>
 
-        {/* Price */}
-        <div className="mt-8 flex items-baseline gap-2">
-          <span className="font-heading text-[52px] font-medium leading-none tracking-[-0.04em] text-white">
-            <NumberFlow
-              value={price}
-              format={{ useGrouping: true }}
-              transformTiming={{ duration: 650, easing: "cubic-bezier(0.22,0.61,0.36,1)" }}
-            />
-            <span className="ml-1 text-[28px] text-white/80">€</span>
+        {/* Price — "À partir de" framing */}
+        <div className="mt-8">
+          <span className="block text-[11px] font-medium uppercase tracking-[0.18em] text-white/45">
+            À partir de
           </span>
-          <span className="text-[13px] text-white/45">
-            {mode === "upfront" ? "HT" : "× 3 mois"}
-          </span>
+          <div className="mt-2 flex items-baseline gap-2">
+            <span className="font-heading text-[52px] font-medium leading-none tracking-[-0.04em] text-white">
+              <NumberFlow
+                value={plan.priceFrom}
+                format={{ useGrouping: true }}
+                transformTiming={{ duration: 650, easing: "cubic-bezier(0.22,0.61,0.36,1)" }}
+              />
+              <span className="ml-1 text-[28px] text-white/80">€</span>
+            </span>
+            <span className="text-[13px] text-white/45">HT</span>
+          </div>
+          <p className="mt-1 text-[11.5px] text-white/40">
+            Tarif indicatif · Devis personnalisé sous 24h
+          </p>
         </div>
-        <p className="mt-1 text-[11.5px] text-white/40">
-          {mode === "upfront"
-            ? "Paiement unique · -10% inclus"
-            : `Soit ${plan.priceSplit * 3}€ HT au total`}
-        </p>
 
-        {/* CTA */}
-        <motion.button
+        {/* Unified CTA — all plans lead to the same contact funnel */}
+        <motion.a
+          href={UNIFIED_CTA_HREF}
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 380, damping: 26 }}
@@ -278,7 +227,7 @@ function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"
             plan.popular ? "pill-solid-accent" : "pill-outline-dark hover:bg-white/[0.08]",
           )}
         >
-          {plan.buttonText}
+          {UNIFIED_CTA_LABEL}
           <motion.span
             className="inline-flex"
             whileHover={{ x: 4 }}
@@ -286,7 +235,7 @@ function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"
           >
             <ArrowRight size={15} />
           </motion.span>
-        </motion.button>
+        </motion.a>
 
         {/* Features */}
         <div className="mt-8 border-t border-white/[0.06] pt-6">
@@ -334,7 +283,6 @@ function PlanCard({ plan, mode, index }: { plan: Plan; mode: "upfront" | "split"
 
 export function Pricing() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [mode, setMode] = useState<"upfront" | "split">("upfront");
 
   const revealVariants = {
     hidden: { filter: "blur(10px)", y: -20, opacity: 0 },
@@ -406,17 +354,7 @@ export function Pricing() {
             customVariants={revealVariants}
             className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-emphasis-dark lg:text-[17px]"
           >
-            Pas de devis à rallonge, pas de surprise. Vous choisissez un plan, on démarre dans les 48h.
-          </TimelineContent>
-
-          <TimelineContent
-            as="div"
-            animationNum={2}
-            timelineRef={sectionRef}
-            customVariants={revealVariants}
-            className="mt-10 flex justify-center"
-          >
-            <PricingSwitch value={mode} onChange={setMode} />
+            Chaque projet est unique. Ces tarifs couvrent 80% des cas — pour le reste, on en discute en 15 minutes.
           </TimelineContent>
         </div>
 
@@ -426,9 +364,20 @@ export function Pricing() {
           onMouseMove={handleCardMouseMove}
         >
           {PLANS.map((plan, index) => (
-            <PlanCard key={plan.id} plan={plan} mode={mode} index={index} />
+            <PlanCard key={plan.id} plan={plan} index={index} />
           ))}
         </div>
+
+        {/* Disclaimer — sets expectation that cards are starting points */}
+        <TimelineContent
+          as="p"
+          animationNum={6}
+          timelineRef={sectionRef}
+          customVariants={revealVariants}
+          className="mx-auto mt-8 max-w-2xl text-center text-[12.5px] leading-relaxed text-white/45"
+        >
+          Tarifs indicatifs hors taxes. Chaque projet fait l&apos;objet d&apos;un devis sur mesure envoyé sous 24h après le premier échange.
+        </TimelineContent>
 
         {/* Trust bar */}
         <TimelineContent
@@ -436,7 +385,7 @@ export function Pricing() {
           animationNum={7}
           timelineRef={sectionRef}
           customVariants={revealVariants}
-          className="mt-16 flex flex-col items-center justify-center gap-6 rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 md:flex-row md:gap-10"
+          className="mt-10 flex flex-col items-center justify-center gap-6 rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 md:flex-row md:gap-10"
         >
           <div className="flex items-center gap-2">
             <div className="flex gap-0.5">

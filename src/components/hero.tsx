@@ -1,20 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { ArrowUpRight, PlayCircle } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
 import { AnimatedShaderBackground } from "@/components/ui/animated-shader-background";
+import { AnimatedCTA } from "@/components/ui/animated-cta";
+import { HeroReviews } from "@/components/hero-reviews";
 
 const t = { duration: 0.7, ease: "easeOut" as const };
-
-// Curated avatar set — real faces from pravatar.cc (free, CORS-friendly).
-// Seeds are fixed so the same 4 faces render every time.
-const avatars = [
-  { src: "https://i.pravatar.cc/80?img=47", alt: "Client Maison Blanc" },
-  { src: "https://i.pravatar.cc/80?img=32", alt: "Client NovaTech" },
-  { src: "https://i.pravatar.cc/80?img=12", alt: "Client Studio Aura" },
-  { src: "https://i.pravatar.cc/80?img=5",  alt: "Client FreshMarket" },
-];
 
 interface HeroProps {
   /** Jour de livraison calculé serveur (J+2, ex: "dimanche"). */
@@ -70,82 +63,52 @@ export function Hero({ deliveryDay }: HeroProps) {
           Pas de templates. Pas de compromis.
         </motion.p>
 
-        {/* CTAs — liquid glass */}
+        {/* CTAs — Pulsor-style animated buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...t, delay: 0.32 }}
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:mt-10"
         >
-          <a
+          <AnimatedCTA
             href="#contact"
-            className="pill pill-glass-accent gap-2.5 px-6 py-3.5 text-[14px]"
+            variant="solid"
+            icon={<ArrowUpRight size={16} strokeWidth={2} />}
+            iconMotion="diagonal"
           >
-            <span className="live-dot" />
-            <span className="relative z-10">Lancer mon projet</span>
-          </a>
-          <a
+            Réserver un appel
+          </AnimatedCTA>
+          <AnimatedCTA
             href="#portfolio"
-            className="pill pill-glass px-6 py-3.5 text-[14px]"
+            variant="outline"
+            icon={<PlayCircle size={16} strokeWidth={1.6} />}
+            iconMotion="slide"
           >
-            <span className="relative z-10">Voir nos réalisations</span>
-          </a>
+            Voir nos réalisations
+          </AnimatedCTA>
         </motion.div>
 
-        {/* Social proof — compact glass card with real avatars + rating */}
+        {/* Social proof — cycling project reviews (Pulsor-style) */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...t, delay: 0.42 }}
-          className="mt-10 flex justify-center lg:mt-12"
+          transition={{ ...t, delay: 0.5 }}
+          className="mt-12 lg:mt-14"
         >
-          <div className="social-glass">
-            <div className="avatar-stack flex items-center">
-              {avatars.map((a, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={a.src}
-                  src={a.src}
-                  alt={a.alt}
-                  width={32}
-                  height={32}
-                  className="h-8 w-8 shrink-0 rounded-full object-cover"
-                  style={{ zIndex: 10 - i }}
-                  loading="lazy"
-                  decoding="async"
-                />
-              ))}
-            </div>
-            <div className="flex items-center gap-2 text-[13px] text-white/90">
-              <div className="flex gap-0.5" aria-label="Note 4.9 sur 5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={12}
-                    className="fill-accent text-accent"
-                  />
-                ))}
-              </div>
-              <span className="font-semibold text-white">4.9/5</span>
-              <span className="hidden text-white/55 sm:inline">
-                · +40 projets livrés
-              </span>
-            </div>
-          </div>
+          <HeroReviews />
         </motion.div>
 
-        {/* Minimal trust strip — replaces the old heavy "stats bar".
-            Inline, ultra-clean, mobile-friendly. */}
+        {/* Minimal trust strip */}
         <motion.ul
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...t, delay: 0.56 }}
+          transition={{ ...t, delay: 0.62 }}
           className="mx-auto mt-14 flex max-w-3xl items-center justify-center divide-x divide-white/[0.08] text-center lg:mt-20"
         >
           {[
-            { value: "48h", label: "livraison moyenne" },
+            { value: "48h", label: "première maquette" },
             { value: "95+", label: "score PageSpeed" },
-            { value: "100%", label: "satisfaction client" },
+            { value: "7j", label: "livraison max" },
           ].map((stat) => (
             <li
               key={stat.label}

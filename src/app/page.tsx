@@ -6,7 +6,6 @@ import { Process } from "@/components/process";
 import { Portfolio } from "@/components/portfolio";
 import { MidCTA } from "@/components/mid-cta";
 import { WhyUs } from "@/components/why-us";
-import { Testimonials } from "@/components/testimonials";
 import { Pricing } from "@/components/pricing";
 import { FAQ } from "@/components/faq";
 import { CTAFinal } from "@/components/cta-final";
@@ -47,7 +46,6 @@ export default function Home() {
         <Portfolio />
         <MidCTA />
         <WhyUs />
-        <Testimonials />
         <Pricing />
         <FAQ />
         <CTAFinal />

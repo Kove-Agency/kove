@@ -356,12 +356,12 @@ export function Pricing() {
               ))}
             </div>
             <span className="text-[14px] font-medium text-white">4.9/5</span>
-            <span className="text-[13px] text-white/45">· +40 projets livrés</span>
+            <span className="text-[13px] text-white/45">· basé en France</span>
           </div>
           <span className="hidden h-6 w-px bg-white/10 md:block" />
           <div className="flex items-center gap-2 text-[13px] text-white/55">
             <Check size={14} className="text-accent" />
-            Garantie satisfait ou remboursé 7 jours
+            Acompte 50%, solde à la livraison
           </div>
           <span className="hidden h-6 w-px bg-white/10 md:block" />
           <div className="flex items-center gap-2 text-[13px] text-white/55">

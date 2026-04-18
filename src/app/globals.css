@@ -721,6 +721,11 @@
 }
 .animate-fade-in-up { animation: fadeInUp 0.6s ease-out both; }
 
+/* Marching-ants dashed border for AnimatedCTA (Pulsor-style) */
+@keyframes dash-march {
+  to { stroke-dashoffset: -16; }
+}
+
 /* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #0f0f0f; }

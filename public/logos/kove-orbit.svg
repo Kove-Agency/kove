@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" aria-labelledby="kove-orbit-title">
+  <title id="kove-orbit-title">Kove</title>
+  <g fill="currentColor">
+    <path d="M12 10h7.2v13.2L30.8 10h8.6L27 23.4 40.2 38h-9.1L19.2 25v13H12V10Z"/>
+    <path d="M59.2 38.6c-8.4 0-13.9-5.9-13.9-14.5S50.8 9.6 59.2 9.6c8.4 0 13.9 5.8 13.9 14.5s-5.5 14.5-13.9 14.5Zm0-6.6c4.1 0 6.6-3 6.6-7.9 0-4.9-2.5-7.9-6.6-7.9-4.1 0-6.7 3-6.7 7.9 0 4.9 2.6 7.9 6.7 7.9Z"/>
+    <path d="M86.9 38 76.4 10h7.9l6.9 20.4L98.1 10h7.7L95.3 38h-8.4Z"/>
+    <path d="M111.4 38V10h21.9v6.4h-14.7v4.5h13v6.2h-13v4.5h14.9V38h-22.1Z"/>
+  </g>
+  <path d="M148 24 Q 162 10 178 24" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <circle cx="178" cy="24" r="3.2" fill="#3b82f6"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-labelledby="kove-monogram-title">
+  <title id="kove-monogram-title">Kove monogram</title>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#0A0A0A" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <path d="M20 18v28" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M22 32 L42 18" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M22 32 L42 46" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

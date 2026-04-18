@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Kove — logo concepts</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; background:#0a0a0a; color:#fff; font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif; padding:48px; }
+  h1 { font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.4); font-weight:500; margin:0 0 32px; }
+  .grid { display:grid; gap:24px; max-width:960px; }
+  .card { background:#111; border:1px solid rgba(255,255,255,.06); border-radius:20px; padding:40px; display:flex; align-items:center; gap:32px; }
+  .card .meta { flex:1; }
+  .card .meta h2 { margin:0 0 6px; font-size:15px; font-weight:600; }
+  .card .meta p { margin:0; font-size:13px; color:rgba(255,255,255,.55); line-height:1.5; }
+  .card .art { flex:0 0 auto; min-width:220px; display:flex; justify-content:center; }
+  .art svg { height:44px; width:auto; color:#fff; }
+  .mono svg { height:56px; }
+  .scale { margin-top:10px; display:flex; gap:16px; align-items:center; color:rgba(255,255,255,.4); font-size:11px; }
+  .scale svg { height:18px; color:#fff; }
+</style>
+</head>
+<body>
+<h1>Kove — 3 pistes logo</h1>
+<div class="grid">
+  <div class="card">
+    <div class="meta">
+      <h2>Concept A — Wordmark + point</h2>
+      <p>Évolution directe du logo texte actuel. Lettres géométriques épaisses, point bleu accent. Signature type Stripe/Linear. Le choix safe.</p>
+      <div class="scale">
+        <span>petit</span>
+        <img src="./kove-wordmark.svg" style="height:14px" />
+        <img src="./kove-wordmark.svg" style="height:22px" />
+        <img src="./kove-wordmark.svg" style="height:32px" />
+      </div>
+    </div>
+    <div class="art"><img src="./kove-wordmark.svg" /></div>
+  </div>
+
+  <div class="card">
+    <div class="meta">
+      <h2>Concept B — Monogramme K</h2>
+      <p>Pur "K" géométrique, branche supérieure blanche, branche inférieure bleue. Idéal en favicon / avatar social / watermark. Style Vercel triangle.</p>
+      <div class="scale">
+        <span>scale</span>
+        <img src="./kove-monogram.svg" style="height:20px" />
+        <img src="./kove-monogram.svg" style="height:32px" />
+        <img src="./kove-monogram.svg" style="height:48px" />
+      </div>
+    </div>
+    <div class="art mono"><img src="./kove-monogram.svg" /></div>
+  </div>
+
+  <div class="card">
+    <div class="meta">
+      <h2>Concept C — Wordmark + orbite</h2>
+      <p>Même base que A, arc bleu qui évoque la vitesse / trajectoire (hommage à Orbit Labs, cohérence écosystème). Plus narratif, plus risqué.</p>
+      <div class="scale">
+        <span>petit</span>
+        <img src="./kove-orbit.svg" style="height:16px" />
+        <img src="./kove-orbit.svg" style="height:24px" />
+        <img src="./kove-orbit.svg" style="height:34px" />
+      </div>
+    </div>
+    <div class="art"><img src="./kove-orbit.svg" /></div>
+  </div>
+</div>
+</body>
+</html>

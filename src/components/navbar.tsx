@@ -36,9 +36,23 @@ export function Navbar() {
         {/* Logo */}
         <a
           href="#"
-          className="font-heading text-xl font-bold tracking-[-0.02em] text-white lg:text-[22px]"
+          aria-label="Kove — accueil"
+          className="inline-flex items-center text-white transition-opacity hover:opacity-85"
         >
-          Kove<span className="text-accent">.</span>
+          <svg
+            viewBox="0 0 180 48"
+            className="h-5 w-auto lg:h-[22px]"
+            fill="none"
+            aria-hidden="true"
+          >
+            <g fill="currentColor">
+              <path d="M12 10h7.2v13.2L30.8 10h8.6L27 23.4 40.2 38h-9.1L19.2 25v13H12V10Z" />
+              <path d="M59.2 38.6c-8.4 0-13.9-5.9-13.9-14.5S50.8 9.6 59.2 9.6c8.4 0 13.9 5.8 13.9 14.5s-5.5 14.5-13.9 14.5Zm0-6.6c4.1 0 6.6-3 6.6-7.9 0-4.9-2.5-7.9-6.6-7.9-4.1 0-6.7 3-6.7 7.9 0 4.9 2.6 7.9 6.7 7.9Z" />
+              <path d="M86.9 38 76.4 10h7.9l6.9 20.4L98.1 10h7.7L95.3 38h-8.4Z" />
+              <path d="M111.4 38V10h21.9v6.4h-14.7v4.5h13v6.2h-13v4.5h14.9V38h-22.1Z" />
+            </g>
+            <circle cx="146" cy="35" r="3.4" fill="#3b82f6" />
+          </svg>
         </a>
 
         {/* Desktop nav — centered */}

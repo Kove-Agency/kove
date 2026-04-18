@@ -7,7 +7,6 @@ import { Portfolio } from "@/components/portfolio";
 import { MidCTA } from "@/components/mid-cta";
 import { WhyUs } from "@/components/why-us";
 import { Testimonials } from "@/components/testimonials";
-import { Comparison } from "@/components/comparison";
 import { Pricing } from "@/components/pricing";
 import { FAQ } from "@/components/faq";
 import { CTAFinal } from "@/components/cta-final";
@@ -49,7 +48,6 @@ export default function Home() {
         <MidCTA />
         <WhyUs />
         <Testimonials />
-        <Comparison />
         <Pricing />
         <FAQ />
         <CTAFinal />

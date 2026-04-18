@@ -31,7 +31,9 @@
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
+  /* NOTE: --color-accent is defined above as var(--accent-brand) = Kove blue.
+     Do not re-bind to --accent (shadcn's neutral tint) — it would turn
+     text-accent / fill-accent / bg-accent into near-black. */
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);

@@ -484,7 +484,7 @@ export function Process() {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" as const }}
           className="mt-14"
         >
-          <div className="grid gap-8 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:p-10">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
             {/* Left — step info */}
             <div className="relative min-h-[280px]">
               <AnimatePresence mode="wait">

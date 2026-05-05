@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Kove icon — Spark">
+  <title>Kove — Spark</title>
+  <!-- Asymmetric 4-pointed sparkle (a "cove" = signal / lighthouse in the dark) -->
+  <!-- Vertical (taller) -->
+  <path d="M 50 4 L 56 50 L 50 96 L 44 50 Z" fill="currentColor"/>
+  <!-- Horizontal (wider) -->
+  <path d="M 4 50 L 50 44 L 96 50 L 50 56 Z" fill="currentColor"/>
+  <!-- Cyan center signature -->
+  <circle cx="50" cy="50" r="4.5" fill="#22d3ee"/>
+</svg>

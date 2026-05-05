@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-05-05T01:45:46.813Z",
+  "results": [
+    {
+      "ok": true,
+      "id": "01-geometric-K",
+      "name": "Geometric K",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, abstract letter K mark, monolithic single-piece geometry, sharp diagonal cuts, white only, no text, like Linear or Vercel logo",
+      "file": "01-geometric-K.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_410a075f49f746709a8c6e2cea4f0e77_1777945521_9wknam7s.png"
+    },
+    {
+      "ok": true,
+      "id": "02-sliced-K-cyan",
+      "name": "Sliced K with cyan",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, letter K mark with thin cyan #22d3ee slot/cut at intersection, mostly white K with one precise cyan accent, premium signature, no text",
+      "file": "02-sliced-K-cyan.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_26149fbfe43840868e816f49f7f7c5d6_1777945541_nw3rvvv0.png"
+    },
+    {
+      "ok": true,
+      "id": "03-sparkle-mark",
+      "name": "Sparkle mark",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, abstract 4-pointed sparkle/star mark, asymmetric elegant proportions, white shape only, single tiny cyan #22d3ee dot at center, no text, like Radiant or Linear icon",
+      "file": "03-sparkle-mark.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_3d36323f5a7842049404130d139c173a_1777945523_exvwez3e.png"
+    },
+    {
+      "ok": true,
+      "id": "04-cove-symbol",
+      "name": "Cove symbol",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, abstract symbol suggesting an enclosed bay or cove, semi-circular form opening upward with a thin beam line, white only with thin cyan #22d3ee accent, no text, premium maritime tech feel",
+      "file": "04-cove-symbol.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_6c9fea2c817442d2a31810a8f0b7f6b0_1777945542_zk8f2ddl.png"
+    },
+    {
+      "ok": true,
+      "id": "05-block-architecture",
+      "name": "Architectural block",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, isometric solid white block with sharp letter K cut into negative space, edge highlight in cyan #22d3ee, like Momentum or Stripe logos, no text",
+      "file": "05-block-architecture.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_7126de97fc074118b6f9a4c855db751a_1777945541_0e2my2zc.png"
+    },
+    {
+      "ok": true,
+      "id": "06-wordmark",
+      "name": "Wordmark Kove",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, the word \"Kove\" as wordmark in custom geometric sans-serif typography, slight italic emphasis on the letter \"o\", letter spacing tight, white text only, premium tech wordmark like Vercel or Linear",
+      "file": "06-wordmark.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_fa17241193344187b7b053b1c186a75f_1777945521_8bcpbbxc.png"
+    },
+    {
+      "ok": true,
+      "id": "07-arc-K",
+      "name": "Arc K",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, letter K mark with a thin orbital arc or ring passing through it, white K with cyan #22d3ee orbital ring detail, like Stomic or Momentum, no text",
+      "file": "07-arc-K.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_c0f95a01b5c34b0a8846899bd583215d_1777945522_2wlvyimp.png"
+    },
+    {
+      "ok": true,
+      "id": "08-monogram-thick",
+      "name": "Bold Monogram",
+      "prompt": "minimalist logo design, single isolated mark on pure solid black background #000000, premium tech brand, ultra clean, vector style, sharp geometric shapes, no gradients, no 3d, no shadows, professional, centered composition, generous negative space, letter K monogram, very bold thick weight, single solid white shape, ultra confident, sharp 90-degree corners, like Klarna logo K, no text, no decoration",
+      "file": "08-monogram-thick.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_fd3db65f447647be911fc7c49a089207_1777945540_6tyb8kof.png"
+    }
+  ]
+}

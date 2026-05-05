@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Kove — Logo Options</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #000; }
+.stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+
+body { background: #050505; color: #fff; padding: 40px; min-height: 100vh; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 32px; letter-spacing: -1px; margin-bottom: 8px; }
+.subtitle { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 40px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1800px; }
+.card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; }
+.card .label { padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.card .label .name { font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 18px; letter-spacing: -0.5px; }
+.card .label .insp { color: #22d3ee; font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; }
+.card img { width: 100%; display: block; }
+.code { font-family: ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.4); padding: 12px 24px; }
+</style></head>
+<body>
+<h1>Kove — Logo Options</h1>
+<div class="subtitle">4 directions inspirées de tes refs. Choisis une à valider, et je remplace les fichiers principaux.</div>
+<div class="grid">
+
+  <div class="card">
+    <div class="label">
+      <div>
+        <div class="name">v1 — Slice</div>
+        <div class="code">brand/logo-options/v1-slice/</div>
+      </div>
+      <div class="insp">Kinect</div>
+    </div>
+    <img src="v1-slice/showcase.png" alt="Slice"/>
+  </div>
+
+  <div class="card">
+    <div class="label">
+      <div>
+        <div class="name">v2 — Spark</div>
+        <div class="code">brand/logo-options/v2-spark/</div>
+      </div>
+      <div class="insp">Stomic</div>
+    </div>
+    <img src="v2-spark/showcase.png" alt="Spark"/>
+  </div>
+
+  <div class="card">
+    <div class="label">
+      <div>
+        <div class="name">v3 — Block</div>
+        <div class="code">brand/logo-options/v3-block/</div>
+      </div>
+      <div class="insp">Radiant</div>
+    </div>
+    <img src="v3-block/showcase.png" alt="Block"/>
+  </div>
+
+  <div class="card">
+    <div class="label">
+      <div>
+        <div class="name">v4 — Orbit</div>
+        <div class="code">brand/logo-options/v4-orbit/</div>
+      </div>
+      <div class="insp">Momentum</div>
+    </div>
+    <img src="v4-orbit/showcase.png" alt="Orbit"/>
+  </div>
+
+</div>
+<div style="margin-top: 60px; padding: 24px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; max-width: 800px;">
+  <h3 style="font-family: 'Space Grotesk'; font-weight: 500; font-size: 16px; margin-bottom: 12px;">Décisions à prendre</h3>
+  <ul style="font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); padding-left: 20px;">
+    <li>Quelle variante valides-tu ? (v1 / v2 / v3 / v4)</li>
+    <li>Tu veux ajuster la couleur cyan (signature) ou garder telle quelle ?</li>
+    <li>Tu veux que le wordmark "Kove" soit plus épais (Bold) ou rester Medium ?</li>
+  </ul>
+</div>
+</body></html>

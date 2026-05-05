@@ -52,13 +52,37 @@ const techlines = (margin = 60) => `
 </div>
 `;
 
-// Logo wordmark inline (svg)
-const wordmark = (color = C.white, fontSize = 32, dotR = 2.4) => `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="${(fontSize / 56) * 320}" height="${(fontSize / 56) * 80}">
-  <text x="0" y="60" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="56" letter-spacing="-2" fill="${color}">Kove</text>
-  <circle cx="186" cy="58" r="${(dotR / 2.4) * 4}" fill="${C.cyan}"/>
+// ===== Locked logo: Sliced K with cyan signature =====
+//
+// The icon is composed of:
+//  - White vertical stem
+//  - White upper arm (parallelogram going up-right from stem mid)
+//  - CYAN lower arm (parallelogram going down-right from stem mid) — signature
+//
+// Stand-alone icon (square viewBox 100×100), sized via `size` param.
+const iconK = (size = 64, kColor = C.white) => `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="${size}" height="${size}" style="display:block;">
+  <rect x="22" y="22" width="13" height="56" fill="${kColor}"/>
+  <polygon points="35,50 49,50 76,22 62,22" fill="${kColor}"/>
+  <polygon points="35,50 49,50 76,78 62,78" fill="${C.cyan}"/>
 </svg>
 `;
+
+// Lockup wordmark: icon + "Kove" text. fontSize controls overall scale.
+const wordmark = (color = C.white, fontSize = 32) => {
+  // viewBox 480×100. Scale to fontSize (default base 56 in viewBox).
+  const scale = fontSize / 56;
+  return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="${480 * scale}" height="${100 * scale}" style="display:inline-block;vertical-align:middle;">
+  <g transform="translate(0, 14)">
+    <rect x="0" y="0" width="9.5" height="72" fill="${color}"/>
+    <polygon points="9.5,36 19,36 51,0 41,0" fill="${color}"/>
+    <polygon points="9.5,36 19,36 51,72 41,72" fill="${C.cyan}"/>
+  </g>
+  <text x="76" y="68" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="62" letter-spacing="-2.5" fill="${color}">Kove</text>
+</svg>
+`;
+};
 
 // Atmospheric glow background
 const auroraBackground = `
@@ -93,12 +117,7 @@ const T = {
     body: `
       <div style="position:absolute;inset:0;background:${C.dark};border-radius:36px;"></div>
       ${auroraBackground}
-      <svg viewBox="0 0 100 100" width="100" height="100" style="position:relative;z-index:1;">
-        <rect x="26" y="26" width="11" height="48" fill="${C.white}"/>
-        <path d="M 37 50 L 66 26 L 75 26 L 46 50 Z" fill="${C.white}"/>
-        <path d="M 37 50 L 46 50 L 75 74 L 66 74 Z" fill="${C.white}"/>
-        <circle cx="37" cy="50" r="3" fill="${C.cyan}"/>
-      </svg>
+      <div style="position:relative;z-index:1;">${iconK(112, C.white)}</div>
     `,
   },
 

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Kove icon — Slice">
+  <title>Kove — Slice K</title>
+  <!-- Stem (thick) -->
+  <rect x="14" y="14" width="16" height="72" fill="currentColor"/>
+  <!-- Upper diagonal arm with gap from stem -->
+  <polygon points="36,50 64,14 86,14 56,50" fill="currentColor"/>
+  <!-- Lower diagonal arm with gap from stem -->
+  <polygon points="36,50 56,50 86,86 64,86" fill="currentColor"/>
+  <!-- Cyan signature: bridges the gap, signal slot -->
+  <rect x="30" y="48.5" width="6" height="3" fill="#22d3ee"/>
+</svg>

@@ -243,29 +243,59 @@ Ces éléments sont propres à Kove. Ils doivent apparaître dans 80% des assets
 
 ---
 
-## 8. Logo & Assets
+## 8. Logo & Assets — VERROUILLÉ (2026-05-05)
 
-### Logo wordmark
-- Texte "Kove" en **Space Grotesk Medium**, letter-spacing -0.03em
-- Version dark : blanc `#ffffff` sur fond `#0f0f0f`
-- Version light : `#0f0f0f` sur fond blanc
-- Disponible : `brand/assets/logo-wordmark.svg` (dark) + `logo-wordmark-on-light.svg`
+### 🔒 Identité visuelle officielle : "Sliced K with cyan"
 
-### Monogram K
-- Lettre "K" stylisée
-- Couleur : blanc avec accent cyan `#22d3ee` sur la barre transversale
-- Disponible : `brand/assets/monogram-K.svg`
-- Usage : favicon, app icon, watermark Instagram
+Le logo Kove est composé d'un **K géométrique en 3 parties** :
+1. **Stem** (barre verticale) — blanc `#ffffff`
+2. **Bras supérieur** (parallélogramme oblique vers haut-droite) — blanc `#ffffff`
+3. **Bras inférieur** (parallélogramme oblique vers bas-droite) — **CYAN `#22d3ee`** ← signature
 
-### Favicon
-- Format SVG vectoriel : `brand/assets/favicon.svg`
-- Format ICO multi-size (16/32/48) : `brand/assets/favicon.ico`
-- Apple touch icon (180×180 PNG) : `brand/assets/apple-touch-icon.png`
+> Le bras cyan en bas-droite est la signature de Kove. Il représente le "signal" — la patte qui se distingue, le détail qui rend le K reconnaissable. **Ne jamais inverser** (cyan en haut, blanc en bas).
 
-### Open Graph
-- 1200×630 PNG : `brand/assets/og-image.png`
-- 1200×1200 square : `brand/assets/og-image-square.png`
-- Contenu : logo wordmark + tagline "Votre site premium, livré en 48-72h"
+### Géométrie (viewBox 100×100)
+- Stem : `x=22, y=22, width=13, height=56`
+- Bras haut : `polygon 35,50 → 49,50 → 76,22 → 62,22` (white)
+- Bras bas : `polygon 35,50 → 49,50 → 76,78 → 62,78` (cyan)
+
+### Wordmark
+- Texte "Kove" en **Space Grotesk Medium**, font-size 62, letter-spacing -2.5
+- Version dark : K (blanc + cyan) + texte blanc sur fond `#0f0f0f`
+- Version light : K (dark + cyan) + texte `#0f0f0f` sur fond blanc
+
+### Espace de protection
+Autour du logo, garder une marge équivalente à la **largeur du stem** (≈9.5px sur lockup), minimum.
+
+### Tailles minimum
+- Favicon (32px) : OK
+- Touch icon (180px) : OK
+- Lockup wordmark : ne jamais descendre sous 32px de hauteur sinon le K perd sa lisibilité
+
+### Fichiers source
+
+| Asset | Path | Format |
+|-------|------|--------|
+| Monogram (avec fond dark) | `brand/assets/monogram-K.svg` | SVG |
+| Monogram (transparent) | `brand/assets/monogram-K-transparent.svg` | SVG |
+| Wordmark (dark bg) | `brand/assets/logo-wordmark.svg` | SVG |
+| Wordmark (light bg) | `brand/assets/logo-wordmark-on-light.svg` | SVG |
+| Lockup avec tagline | `brand/assets/logo-lockup.svg` | SVG |
+| Favicon site | `brand/assets/favicon.svg` | SVG |
+| Apple touch icon | `brand/assets/apple-touch-icon.png` | PNG 180×180 |
+| Open Graph | `brand/assets/og-image.png` | PNG 1200×630 |
+| OG square | `brand/assets/og-image-square.png` | PNG 1200×1200 |
+
+### Origine
+Logo généré via Kie.ai (Flux Kontext Pro) puis vectorisé en SVG manuel pour précision géométrique. Référence du concept original : `brand/logo-options/ai-generated/02-sliced-K-cyan.png`.
+
+### À ne JAMAIS faire
+- ❌ Inverser les couleurs des bras (cyan en haut, blanc en bas)
+- ❌ Mettre les 2 bras en cyan
+- ❌ Mettre les 2 bras en blanc (perd la signature)
+- ❌ Ajouter un dégradé (rester en aplat solide)
+- ❌ Tilter le K (rester droit, vertical)
+- ❌ Mettre le logo sur fond saturé (bleu clair, vert, orange) — toujours dark `#0f0f0f`/`#000000` ou blanc
 
 ---
 

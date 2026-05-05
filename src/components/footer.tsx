@@ -48,9 +48,31 @@ export function Footer() {
         {/* Links grid */}
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <span className="font-heading text-[22px] font-bold tracking-[-0.02em] text-white">
-              Kove<span className="text-accent">.</span>
-            </span>
+            <svg
+              viewBox="0 0 280 100"
+              className="h-7 w-auto text-white"
+              fill="none"
+              role="img"
+              aria-label="Kove"
+            >
+              {/* Sliced K with cyan signature */}
+              <g transform="translate(0, 14)">
+                <rect x="0" y="0" width="9.5" height="72" fill="currentColor" />
+                <polygon points="9.5,36 19,36 51,0 41,0" fill="currentColor" />
+                <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee" />
+              </g>
+              <text
+                x="76"
+                y="68"
+                fontFamily="Space Grotesk, system-ui, sans-serif"
+                fontWeight="500"
+                fontSize="62"
+                letterSpacing="-2.5"
+                fill="currentColor"
+              >
+                Kove
+              </text>
+            </svg>
             <p className="mt-3 text-[13px] leading-relaxed text-white/55">
               Votre site, notre craft. Sites premium livrés en 48-72h,
               propulsés par l&apos;IA. Design qui convertit, code optimisé.

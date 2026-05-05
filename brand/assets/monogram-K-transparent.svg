@@ -1,11 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Kove monogram">
   <title>Kove</title>
   <!-- Stem -->
-  <rect x="26" y="26" width="11" height="48" fill="currentColor"/>
-  <!-- Upper arm -->
-  <path d="M 37 50 L 66 26 L 75 26 L 46 50 Z" fill="currentColor"/>
-  <!-- Lower arm -->
-  <path d="M 37 50 L 46 50 L 75 74 L 66 74 Z" fill="currentColor"/>
-  <!-- Cyan accent at junction (signature) -->
-  <circle cx="37" cy="50" r="3" fill="#22d3ee"/>
+  <rect x="22" y="22" width="13" height="56" fill="#ffffff"/>
+  <!-- Upper arm: white -->
+  <polygon points="35,50 49,50 76,22 62,22" fill="#ffffff"/>
+  <!-- Lower arm: cyan signature -->
+  <polygon points="35,50 49,50 76,78 62,78" fill="#22d3ee"/>
 </svg>

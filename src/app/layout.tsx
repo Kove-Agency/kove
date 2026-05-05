@@ -26,7 +26,8 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Kove — Votre site, notre craft.",
+  metadataBase: new URL("https://kove.fr"),
+  title: "Kove — Votre site premium, livré en 48-72h.",
   description:
     "Agence web nouvelle génération. Sites e-commerce, vitrines et landing pages livrés en 48-72h grâce à l'IA. Design premium, performance maximale.",
   keywords: [
@@ -38,12 +39,35 @@ export const metadata: Metadata = {
     "site vitrine",
     "agence IA",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
-    title: "Kove — Votre site, notre craft.",
+    title: "Kove — Votre site premium, livré en 48-72h.",
     description:
       "Sites web premium livrés en 48-72h. E-commerce, vitrines, landing pages.",
     type: "website",
     locale: "fr_FR",
+    siteName: "Kove",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kove — Sites premium livrés en 48-72h",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kove — Sites premium livrés en 48-72h",
+    description: "Pas de templates. Pas de compromis.",
+    images: ["/og-image.png"],
   },
 };
 

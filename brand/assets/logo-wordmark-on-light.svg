@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Kove">
+  <title>Kove</title>
+  <style>
+    .wm {
+      font-family: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
+      font-weight: 500;
+      font-size: 56px;
+      letter-spacing: -2px;
+      fill: #0f0f0f;
+    }
+  </style>
+  <text class="wm" x="0" y="60" dominant-baseline="alphabetic">Kove</text>
+  <!-- Blue accent dot (signature on light) -->
+  <circle cx="186" cy="58" r="4" fill="#3b82f6"/>
+</svg>

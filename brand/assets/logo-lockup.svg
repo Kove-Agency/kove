@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" width="480" height="120" role="img" aria-label="Kove · Sites premium">
+  <title>Kove · Sites premium</title>
+  <style>
+    .wm {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 56px;
+      letter-spacing: -2px;
+      fill: #ffffff;
+    }
+    .tag {
+      font-family: "Inter", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 2.4px;
+      fill: #abaaa8;
+      text-transform: uppercase;
+    }
+  </style>
+  <text class="wm" x="0" y="60" dominant-baseline="alphabetic">Kove</text>
+  <circle cx="186" cy="58" r="4" fill="#22d3ee"/>
+  <text class="tag" x="0" y="95" dominant-baseline="alphabetic">Sites premium · Livré 48–72h</text>
+</svg>

@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kove — Agence web premium
 
-## Getting Started
+> Sites web premium livrés en 48-72h. Pas de templates. Pas de compromis.
 
-First, run the development server:
+**Live :** https://web-production-996275.up.railway.app
+**Stack :** Next.js 16 · React 19 · Tailwind v4 · Framer Motion · Three.js
+**Hébergement :** Railway (auto-deploy depuis `main`)
+
+---
+
+## 📚 Lis-moi en premier
+
+| Doc | Pour qui | Quand |
+|-----|----------|-------|
+| [`ONBOARDING.md`](ONBOARDING.md) | **Nouveau collaborateur** | Premier contact avec le projet (15 min) |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Tous | Avant ton premier commit (Git workflow + PR) |
+| [`SKILLS_BUNDLE.md`](SKILLS_BUNDLE.md) | Tous | Setup Claude Code identique (30 min) |
+| [`brand/BRAND_BIBLE.md`](brand/BRAND_BIBLE.md) | Designer / dev | Avant tout travail visuel |
+| [`brand/MOODBOARD.md`](brand/MOODBOARD.md) | Designer | Pour comprendre l'atmosphère |
+
+---
+
+## 🚀 Setup local (5 min)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Maximgeb/kove.git
+cd kove
+
+nvm use                       # Node 20+
+npm install
+cp .env.example .env.local    # remplir les valeurs réelles
+npm run dev                   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Detail complet : voir [`ONBOARDING.md`](ONBOARDING.md).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌿 Workflow Git (TL;DR)
 
-## Learn More
+**Jamais de push direct sur `main`.** Toujours via PR.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git checkout main && git pull
+git checkout -b feature/ma-feature
+# ... commits ...
+git push origin feature/ma-feature
+# Open PR → review → merge
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Détail complet : voir [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎨 Brand identity (TL;DR)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Couleurs** : Bleu `#3b82f6` + Cyan `#22d3ee` + Dark `#0f0f0f`
+- **Fonts** : Space Grotesk (heading) + Inter (body) + Instrument Serif (italic emphasis)
+- **Logo** : "Sliced K with cyan" — voir `brand/assets/`
+- **Tone** : Direct + Premium + Rassurant. Sans hype.
+- **❌ Jamais d'orange** (réservé écosystème Maxime Gebhart / Orbit Labs)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Détail complet : voir [`brand/BRAND_BIBLE.md`](brand/BRAND_BIBLE.md).
+
+---
+
+## 🛠️ Scripts utiles
+
+```bash
+# Dev
+npm run dev                                              # serveur local
+npm run build                                            # build prod
+npm run lint                                             # ESLint
+
+# Brand assets
+node scripts/brand/generate-assets.mjs                   # favicon, OG, IG templates, moodboard
+node scripts/brand/generate-triptychs.mjs                # triptyques Insta (3 posts = 1 image)
+node --env-file=.env.local scripts/brand/generate-ai-logos-v2.mjs   # logos via Kie.ai
+```
+
+---
+
+## 📂 Arborescence rapide
+
+```
+src/
+├── app/        # Next.js app router (layout, page, globals.css)
+└── components/ # navbar, hero, process, portfolio, pricing, faq, footer + ui/
+
+public/         # assets servis directement (favicon, OG, logos, portfolio)
+brand/          # source de vérité brand (BIBLE + MOODBOARD + assets + IG templates)
+scripts/brand/  # génération automatisée des brand assets
+```
+
+---
+
+## 🔗 Liens
+
+- Repo : https://github.com/Maximgeb/kove
+- Site live : https://web-production-996275.up.railway.app
+- Domaine custom : `kove.fr` (configuration DNS en cours)

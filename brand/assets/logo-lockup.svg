@@ -1,20 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 130" width="520" height="130" role="img" aria-label="Kove · Sites premium">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 130" width="560" height="130" role="img" aria-label="Kove · Sites premium">
   <title>Kove · Sites premium</title>
-  <!-- Icon -->
-  <g transform="translate(0, 18)">
-    <rect x="0" y="0" width="9.5" height="72" fill="#ffffff"/>
-    <polygon points="9.5,36 19,36 51,0 41,0" fill="#ffffff"/>
-    <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee"/>
+  <!-- Icon thicker -->
+  <g transform="translate(0, 12)">
+    <rect x="0" y="0" width="20" height="84" fill="#ffffff"/>
+    <polygon points="20,42 38,42 58,0 40,0" fill="#ffffff"/>
+    <polygon points="20,42 38,42 58,84 40,84" fill="#22d3ee"/>
   </g>
-  <!-- Wordmark "Kove" -->
-  <text x="76" y="72"
+  <text x="86" y="72"
         font-family="Space Grotesk, system-ui, sans-serif"
         font-weight="500"
         font-size="62"
         letter-spacing="-2.5"
         fill="#ffffff">Kove</text>
-  <!-- Tagline -->
-  <text x="76" y="106"
+  <text x="86" y="106"
         font-family="Inter, system-ui, sans-serif"
         font-weight="500"
         font-size="11"

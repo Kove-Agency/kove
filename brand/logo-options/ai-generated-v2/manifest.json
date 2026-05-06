@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-05-06T00:58:00.409Z",
+  "prompts": [
+    {
+      "id": "P1-precise",
+      "name": "Precise 3-part",
+      "prompt": "minimalist tech logo, single letter \"K\" mark, three-part geometric construction: (1) thick vertical stem in solid pure white #FFFFFF, (2) upper-right diagonal arm parallelogram in solid pure white #FFFFFF, (3) lower-right diagonal arm parallelogram in solid cyan #22D3EE, sharp 45-degree angles, no curves, no rounded corners, the cyan lower arm is the only colored element — the rest is white, centered composition, isolated on pure solid black #000000 background, generous negative space, vector flat design, no gradients, no shadows, no 3D, no text, no decoration, 1:1 square, premium tech brand identity, monolithic confident form"
+    },
+    {
+      "id": "P2-thick",
+      "name": "Extra Thick",
+      "prompt": "BOLD minimalist letter K logo, monolithic construction with EXTRA THICK proportions, the K occupies 45% of the canvas width, vertical stem is 1/3 of K width, upper diagonal arm and stem in solid white #FFFFFF, lower diagonal arm in solid cyan #22D3EE, sharp geometric edges, no curves, no rounded corners, isolated on pure black #000000 square background, vector flat design, no text, no shadows, no gradients, centered, generous negative space, premium tech aesthetic"
+    },
+    {
+      "id": "P3-natural",
+      "name": "Natural language",
+      "prompt": "Create a minimalist logo for a premium tech brand. The logo is a stylized letter K composed of three flat geometric shapes: a thick vertical bar in pure white, an upper diagonal arm going up-right in pure white, and a lower diagonal arm going down-right in solid cyan #22D3EE. The K must be perfectly geometric with sharp angles, no curves, no rounded corners. Place it on a solid pure black background with generous space around. No text, no shadows, no gradients, no 3D effects. Vector flat style. Square 1:1 composition. Centered."
+    },
+    {
+      "id": "P4-signature",
+      "name": "Cyan signature emphasis",
+      "prompt": "Logo of letter K, minimalist and monumental. Stem and upper-right diagonal: pure WHITE. Lower-right diagonal: VIBRANT CYAN #22D3EE — this cyan element is the brand signature. Sharp geometric construction, NO curves, NO rounded corners, NO 3D. Pure BLACK #000000 background. Generous negative space. NO text. Square 1:1. Vector flat."
+    }
+  ],
+  "results": [
+    {
+      "ok": true,
+      "prompt": "P1-precise",
+      "promptName": "Precise 3-part",
+      "model": "flux-max",
+      "modelName": "Flux Kontext Max",
+      "file": "P1-precise_flux-max.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_caa9892d5668432b9f6a614d582d5075_1778029046_s7lhiova.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P1-precise",
+      "promptName": "Precise 3-part",
+      "model": "gpt4o",
+      "modelName": "GPT-4o Image",
+      "file": "P1-precise_gpt4o.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000005518722fa73eb8ceb231abb9.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P2-thick",
+      "promptName": "Extra Thick",
+      "model": "flux-max",
+      "modelName": "Flux Kontext Max",
+      "file": "P2-thick_flux-max.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_427d36d9a7de46c18a84b1425da354c1_1778029045_xurrbz2j.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P2-thick",
+      "promptName": "Extra Thick",
+      "model": "gpt4o",
+      "modelName": "GPT-4o Image",
+      "file": "P2-thick_gpt4o.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000005e5c71fdbc615c72b6c566e2.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P3-natural",
+      "promptName": "Natural language",
+      "model": "flux-max",
+      "modelName": "Flux Kontext Max",
+      "file": "P3-natural_flux-max.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_d97e48ab43804d1aa85a5aa7429e8876_1778029063_ri4vza1c.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P3-natural",
+      "promptName": "Natural language",
+      "model": "gpt4o",
+      "modelName": "GPT-4o Image",
+      "file": "P3-natural_gpt4o.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000000d6071fdaa5a63b84d83531d.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P4-signature",
+      "promptName": "Cyan signature emphasis",
+      "model": "flux-max",
+      "modelName": "Flux Kontext Max",
+      "file": "P4-signature_flux-max.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/r/fluxkontext_8478164860d441ec811e1ffe97f217cf_1778029067_8hpsqesc.png"
+    },
+    {
+      "ok": true,
+      "prompt": "P4-signature",
+      "promptName": "Cyan signature emphasis",
+      "model": "gpt4o",
+      "modelName": "GPT-4o Image",
+      "file": "P4-signature_gpt4o.png",
+      "sourceUrl": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000004a4871fd8e93d2e46f048c70.png"
+    }
+  ]
+}

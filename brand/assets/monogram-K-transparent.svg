@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Kove monogram">
   <title>Kove</title>
-  <!-- Stem -->
-  <rect x="22" y="22" width="13" height="56" fill="#ffffff"/>
-  <!-- Upper arm: white -->
-  <polygon points="35,50 49,50 76,22 62,22" fill="#ffffff"/>
-  <!-- Lower arm: cyan signature -->
-  <polygon points="35,50 49,50 76,78 62,78" fill="#22d3ee"/>
+  <!-- Stem: bold thick vertical bar -->
+  <rect x="20" y="18" width="22" height="64" fill="#ffffff"/>
+  <!-- Upper arm: white parallelogram, thick -->
+  <polygon points="42,50 62,50 82,18 62,18" fill="#ffffff"/>
+  <!-- Lower arm: cyan parallelogram (signature), thick -->
+  <polygon points="42,50 62,50 82,82 62,82" fill="#22d3ee"/>
 </svg>

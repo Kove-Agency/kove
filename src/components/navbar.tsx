@@ -40,20 +40,20 @@ export function Navbar() {
           className="inline-flex items-center text-white transition-opacity hover:opacity-85"
         >
           <svg
-            viewBox="0 0 280 100"
+            viewBox="0 0 320 100"
             className="h-6 w-auto lg:h-7"
             fill="none"
             aria-hidden="true"
           >
-            {/* Sliced K with cyan signature */}
-            <g transform="translate(0, 14)">
-              <rect x="0" y="0" width="9.5" height="72" fill="currentColor" />
-              <polygon points="9.5,36 19,36 51,0 41,0" fill="currentColor" />
-              <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee" />
+            {/* Sliced K with cyan signature (thicker geometry) */}
+            <g transform="translate(0, 8)">
+              <rect x="0" y="0" width="20" height="84" fill="currentColor" />
+              <polygon points="20,42 38,42 58,0 40,0" fill="currentColor" />
+              <polygon points="20,42 38,42 58,84 40,84" fill="#22d3ee" />
             </g>
             {/* Wordmark "Kove" */}
             <text
-              x="76"
+              x="86"
               y="68"
               fontFamily="Space Grotesk, system-ui, sans-serif"
               fontWeight="500"

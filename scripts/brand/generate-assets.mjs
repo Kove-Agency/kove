@@ -62,24 +62,24 @@ const techlines = (margin = 60) => `
 // Stand-alone icon (square viewBox 100×100), sized via `size` param.
 const iconK = (size = 64, kColor = C.white) => `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="${size}" height="${size}" style="display:block;">
-  <rect x="22" y="22" width="13" height="56" fill="${kColor}"/>
-  <polygon points="35,50 49,50 76,22 62,22" fill="${kColor}"/>
-  <polygon points="35,50 49,50 76,78 62,78" fill="${C.cyan}"/>
+  <rect x="20" y="18" width="22" height="64" fill="${kColor}"/>
+  <polygon points="42,50 62,50 82,18 62,18" fill="${kColor}"/>
+  <polygon points="42,50 62,50 82,82 62,82" fill="${C.cyan}"/>
 </svg>
 `;
 
 // Lockup wordmark: icon + "Kove" text. fontSize controls overall scale.
 const wordmark = (color = C.white, fontSize = 32) => {
-  // viewBox 480×100. Scale to fontSize (default base 56 in viewBox).
+  // viewBox 520×100. Scale to fontSize (default base 56).
   const scale = fontSize / 56;
   return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="${480 * scale}" height="${100 * scale}" style="display:inline-block;vertical-align:middle;">
-  <g transform="translate(0, 14)">
-    <rect x="0" y="0" width="9.5" height="72" fill="${color}"/>
-    <polygon points="9.5,36 19,36 51,0 41,0" fill="${color}"/>
-    <polygon points="9.5,36 19,36 51,72 41,72" fill="${C.cyan}"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100" width="${520 * scale}" height="${100 * scale}" style="display:inline-block;vertical-align:middle;">
+  <g transform="translate(0, 8)">
+    <rect x="0" y="0" width="20" height="84" fill="${color}"/>
+    <polygon points="20,42 38,42 58,0 40,0" fill="${color}"/>
+    <polygon points="20,42 38,42 58,84 40,84" fill="${C.cyan}"/>
   </g>
-  <text x="76" y="68" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="62" letter-spacing="-2.5" fill="${color}">Kove</text>
+  <text x="86" y="68" font-family="Space Grotesk, sans-serif" font-weight="500" font-size="62" letter-spacing="-2.5" fill="${color}">Kove</text>
 </svg>
 `;
 };

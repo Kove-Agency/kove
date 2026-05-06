@@ -6,7 +6,7 @@ import { Star, ArrowRight } from "lucide-react";
 export function MidCTA() {
   return (
     <section className="section-dark relative overflow-hidden py-20 lg:py-24">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.06] blur-[140px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.06] blur-[70px]" />
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}

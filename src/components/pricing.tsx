@@ -336,7 +336,7 @@ export function Pricing() {
       className="section-dark section-curve relative overflow-hidden py-28 lg:py-36"
     >
       <TechLines variant="dense" />
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[160px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[80px]" />
 
       <div className="relative mx-auto max-w-[1240px] px-6">
         {/* Header */}

@@ -122,7 +122,7 @@ export function Portfolio() {
       className="section-dark section-curve relative overflow-hidden py-24 lg:py-28"
     >
       <TechLines variant="default" />
-      <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-accent/[0.04] blur-[140px]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-accent/[0.04] blur-[70px]" />
 
       <div className="relative mx-auto max-w-3xl px-6">
         <motion.div

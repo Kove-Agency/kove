@@ -26,7 +26,7 @@ export function CTAFinal() {
       className="section-dark section-curve relative overflow-hidden py-28 lg:py-36"
     >
       <TechLines variant="soft" />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.05] blur-[180px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.05] blur-[80px]" />
 
       <div className="relative mx-auto max-w-4xl px-6">
         <motion.div
@@ -72,7 +72,7 @@ export function CTAFinal() {
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" as const }}
           className="mt-12 lg:mt-16"
         >
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-2 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:p-3">
+          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-2 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.55)] backdrop-blur-md sm:p-3">
             <div
               className="calendly-inline-widget overflow-hidden rounded-2xl"
               data-url={CALENDLY_URL}

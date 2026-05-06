@@ -21,7 +21,7 @@ export function Footer() {
     <footer className="section-deep relative overflow-hidden pt-24 pb-12 lg:pt-32">
       <TechLines variant="soft" />
       {/* Subtle top glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[60px]" />
 
       <div className="relative mx-auto max-w-[1280px] px-6">
         {/* Big CTA headline */}

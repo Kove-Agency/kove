@@ -237,7 +237,7 @@ PREMIÈRE MAQUETTE · 48H · 95+ PAGESPEED
 ## Prochaines étapes (post-livraison brand kit)
 
 1. Test du favicon en prod (vérifier favicon.ico est bien servi)
-2. Test OG image via https://www.opengraph.xyz/url/kove.fr
-3. Création compte Instagram `@kove.fr` avec assets
+2. Test OG image via https://www.opengraph.xyz/url/koveagency.fr
+3. Création compte Instagram `@koveagency.fr` avec assets
 4. Premier post : carousel 5 slides hook+stats+process+CTA
 5. Premier reel (semaine 2) : behind-the-scenes process Kove

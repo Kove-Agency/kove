@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
 
@@ -20,7 +21,7 @@ export function Footer() {
     <footer className="section-deep relative overflow-hidden pt-24 pb-12 lg:pt-32">
       <TechLines variant="soft" />
       {/* Subtle top glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[60px]" />
 
       <div className="relative mx-auto max-w-[1280px] px-6">
         {/* Big CTA headline */}
@@ -36,11 +37,11 @@ export function Footer() {
               Lancer mon projet
             </a>
             <a
-              href="mailto:hello@kove.agency"
+              href="mailto:hello@koveagency.fr"
               className="inline-flex items-center gap-2 text-[13px] text-white/60 transition-colors hover:text-white"
             >
               <Mail size={13} />
-              hello@kove.agency
+              hello@koveagency.fr
             </a>
           </div>
         </div>
@@ -48,31 +49,18 @@ export function Footer() {
         {/* Links grid */}
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <svg
-              viewBox="0 0 280 100"
-              className="h-7 w-auto text-white"
-              fill="none"
-              role="img"
-              aria-label="Kove"
-            >
-              {/* Sliced K with cyan signature */}
-              <g transform="translate(0, 14)">
-                <rect x="0" y="0" width="9.5" height="72" fill="currentColor" />
-                <polygon points="9.5,36 19,36 51,0 41,0" fill="currentColor" />
-                <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee" />
-              </g>
-              <text
-                x="76"
-                y="68"
-                fontFamily="Space Grotesk, system-ui, sans-serif"
-                fontWeight="500"
-                fontSize="62"
-                letterSpacing="-2.5"
-                fill="currentColor"
-              >
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Kove"
+                width={140}
+                height={40}
+                className="h-9 w-auto"
+              />
+              <span className="ml-2 font-heading text-[24px] font-medium tracking-[-0.03em] text-white">
                 Kove
-              </text>
-            </svg>
+              </span>
+            </div>
             <p className="mt-3 text-[13px] leading-relaxed text-white/55">
               Votre site, notre craft. Sites premium livrés en 48-72h,
               propulsés par l&apos;IA. Design qui convertit, code optimisé.

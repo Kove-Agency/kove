@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -28,7 +29,7 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" as const }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.06] bg-[#0f0f0f]/85 backdrop-blur-xl"
+          ? "border-b border-white/[0.06] bg-[#0f0f0f]/85 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -39,31 +40,17 @@ export function Navbar() {
           aria-label="Kove — accueil"
           className="inline-flex items-center text-white transition-opacity hover:opacity-85"
         >
-          <svg
-            viewBox="0 0 280 100"
-            className="h-6 w-auto lg:h-7"
-            fill="none"
-            aria-hidden="true"
-          >
-            {/* Sliced K with cyan signature */}
-            <g transform="translate(0, 14)">
-              <rect x="0" y="0" width="9.5" height="72" fill="currentColor" />
-              <polygon points="9.5,36 19,36 51,0 41,0" fill="currentColor" />
-              <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee" />
-            </g>
-            {/* Wordmark "Kove" */}
-            <text
-              x="76"
-              y="68"
-              fontFamily="Space Grotesk, system-ui, sans-serif"
-              fontWeight="500"
-              fontSize="62"
-              letterSpacing="-2.5"
-              fill="currentColor"
-            >
-              Kove
-            </text>
-          </svg>
+          <Image
+            src="/logo.png"
+            alt="Kove"
+            width={140}
+            height={40}
+            priority
+            className="h-7 w-auto lg:h-8"
+          />
+          <span className="ml-2 font-heading text-[20px] font-medium tracking-[-0.03em] text-white lg:text-[22px]">
+            Kove
+          </span>
         </a>
 
         {/* Desktop nav — centered */}
@@ -108,7 +95,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" as const }}
-            className="overflow-hidden border-t border-white/[0.06] bg-[#0f0f0f]/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-white/[0.06] bg-[#0f0f0f]/95 backdrop-blur-md md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-6">
               {navLinks.map((link, i) => (

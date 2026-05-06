@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
+import { useAutoPause } from "@/lib/use-auto-pause";
 
 /* ------------------------------------------------------------------ */
 /* MOCKUPS — one per step                                              */
@@ -409,10 +410,12 @@ const mockupVariants: Variants = {
 
 export function Process() {
   const [[active, direction], setActiveDir] = useState<[number, number]>([0, 1]);
-  const [paused, setPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const offscreenPaused = useAutoPause(sectionRef);
+  const paused = userPaused || offscreenPaused;
 
   const goTo = useCallback((i: number) => {
     setActiveDir(([prev]) => {
@@ -424,9 +427,9 @@ export function Process() {
       return [i, forward <= backward ? 1 : -1];
     });
     setProgress(0);
-    setPaused(true);
+    setUserPaused(true);
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setPaused(false), RESUME_AFTER_MS);
+    resumeTimer.current = setTimeout(() => setUserPaused(false), RESUME_AFTER_MS);
   }, []);
 
   useEffect(() => {
@@ -476,7 +479,7 @@ export function Process() {
       {/* Ambient glow that shifts position based on active step */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/3 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[160px]"
+        className="pointer-events-none absolute top-1/3 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[80px]"
         style={{ willChange: "left" }}
         animate={{ left: glowLeft }}
         transition={{ type: "spring", stiffness: 60, damping: 22 }}

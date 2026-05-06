@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { Star } from "lucide-react";
+import { useAutoPause } from "@/lib/use-auto-pause";
 
 /**
  * Cycling "hero reviews" block — Pulsor-style.
@@ -80,7 +81,10 @@ const itemVariants: Variants = {
 
 export function HeroReviews() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const offscreenPaused = useAutoPause(containerRef);
+  const paused = hoverPaused || offscreenPaused;
 
   useEffect(() => {
     if (paused) return;
@@ -95,11 +99,12 @@ export function HeroReviews() {
 
   return (
     <div
+      ref={containerRef}
       className="relative mx-auto w-full max-w-[560px]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocus={() => setHoverPaused(true)}
+      onBlur={() => setHoverPaused(false)}
     >
       <AnimatePresence mode="wait">
         <motion.article

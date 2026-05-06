@@ -1,13 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="480" height="100" role="img" aria-label="Kove">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100" width="520" height="100" role="img" aria-label="Kove">
   <title>Kove</title>
-  <!-- Icon: Sliced K with cyan (light bg version: K becomes dark) -->
-  <g transform="translate(0, 14)">
-    <rect x="0" y="0" width="9.5" height="72" fill="#0f0f0f"/>
-    <polygon points="9.5,36 19,36 51,0 41,0" fill="#0f0f0f"/>
-    <polygon points="9.5,36 19,36 51,72 41,72" fill="#22d3ee"/>
+  <!-- Icon: Sliced K with cyan (light bg variant) -->
+  <g transform="translate(0, 8)">
+    <rect x="0" y="0" width="20" height="84" fill="#0f0f0f"/>
+    <polygon points="20,42 38,42 58,0 40,0" fill="#0f0f0f"/>
+    <polygon points="20,42 38,42 58,84 40,84" fill="#22d3ee"/>
   </g>
-  <!-- Wordmark "Kove" dark -->
-  <text x="76" y="68"
+  <text x="86" y="68"
         font-family="Space Grotesk, system-ui, sans-serif"
         font-weight="500"
         font-size="62"

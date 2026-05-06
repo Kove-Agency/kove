@@ -20,8 +20,8 @@ type Review = {
   quote: string;
   /** Real project name from Kove portfolio. */
   project: string;
-  /** Placeholder portrait (pravatar seeded). */
-  avatar: string;
+  /** First letter of project — rendered in a brand-colored circle as placeholder until real client photos are collected. */
+  initial: string;
   /** Short project-type tag. */
   tag: string;
 };
@@ -31,28 +31,28 @@ const REVIEWS: Review[] = [
     quote:
       "Boutique Shopify livrée clé en main, parcours d'achat raccourci, design épuré.",
     project: "Sélyne",
-    avatar: "https://i.pravatar.cc/80?img=47",
+    initial: "S",
     tag: "E-commerce Shopify",
   },
   {
     quote:
       "Landing SaaS livrée en 72h, prête à convertir du trafic payant dès le jour 1.",
     project: "Orbit Labs",
-    avatar: "https://i.pravatar.cc/80?img=32",
+    initial: "O",
     tag: "Landing SaaS",
   },
   {
     quote:
       "Vitrine gastronomique animée, réservation Zenchef intégrée, zéro friction.",
     project: "Vach'et Nous",
-    avatar: "https://i.pravatar.cc/80?img=12",
+    initial: "V",
     tag: "Site vitrine",
   },
   {
     quote:
       "Site B2B multilingue, positionnement premium discret, performance maximale.",
     project: "Extrad Solution",
-    avatar: "https://i.pravatar.cc/80?img=5",
+    initial: "E",
     tag: "Services B2B",
   },
 ];
@@ -123,16 +123,15 @@ export function HeroReviews() {
               custom={1}
               className="flex items-center gap-2.5"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={r.avatar}
-                alt={`Projet ${r.project}`}
-                width={36}
-                height={36}
-                loading="lazy"
-                decoding="async"
-                className="h-9 w-9 shrink-0 rounded-full border border-white/10 object-cover"
-              />
+              <div
+                role="img"
+                aria-label={`Projet ${r.project}`}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04]"
+              >
+                <span className="font-heading text-[15px] font-medium leading-none text-white/85 tracking-tight">
+                  {r.initial}
+                </span>
+              </div>
               <div className="flex flex-col items-start">
                 <span className="text-[13px] font-medium leading-none text-white">
                   {r.project}
@@ -179,7 +178,9 @@ export function HeroReviews() {
                 onClick={() => setIndex(i)}
                 aria-label={`Afficher le projet ${REVIEWS[i].project}`}
                 className={`h-1 rounded-full transition-all duration-300 ${
-                  i === index ? "w-5 bg-white/70" : "w-1 bg-white/20 hover:bg-white/40"
+                  i === index
+                    ? "w-5 bg-white/70"
+                    : "w-1 bg-white/20 hover:bg-white/40"
                 }`}
               />
             ))}

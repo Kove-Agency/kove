@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -39,31 +40,17 @@ export function Navbar() {
           aria-label="Kove — accueil"
           className="inline-flex items-center text-white transition-opacity hover:opacity-85"
         >
-          <svg
-            viewBox="0 0 320 100"
-            className="h-6 w-auto lg:h-7"
-            fill="none"
-            aria-hidden="true"
-          >
-            {/* Sliced K with cyan signature (thicker geometry) */}
-            <g transform="translate(0, 8)">
-              <rect x="0" y="0" width="20" height="84" fill="currentColor" />
-              <polygon points="20,42 38,42 58,0 40,0" fill="currentColor" />
-              <polygon points="20,42 38,42 58,84 40,84" fill="#22d3ee" />
-            </g>
-            {/* Wordmark "Kove" */}
-            <text
-              x="86"
-              y="68"
-              fontFamily="Space Grotesk, system-ui, sans-serif"
-              fontWeight="500"
-              fontSize="62"
-              letterSpacing="-2.5"
-              fill="currentColor"
-            >
-              Kove
-            </text>
-          </svg>
+          <Image
+            src="/logo.png"
+            alt="Kove"
+            width={140}
+            height={40}
+            priority
+            className="h-7 w-auto lg:h-8"
+          />
+          <span className="ml-2 font-heading text-[20px] font-medium tracking-[-0.03em] text-white lg:text-[22px]">
+            Kove
+          </span>
         </a>
 
         {/* Desktop nav — centered */}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
 
@@ -48,31 +49,18 @@ export function Footer() {
         {/* Links grid */}
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <svg
-              viewBox="0 0 320 100"
-              className="h-8 w-auto text-white"
-              fill="none"
-              role="img"
-              aria-label="Kove"
-            >
-              {/* Sliced K with cyan signature (thicker geometry) */}
-              <g transform="translate(0, 8)">
-                <rect x="0" y="0" width="20" height="84" fill="currentColor" />
-                <polygon points="20,42 38,42 58,0 40,0" fill="currentColor" />
-                <polygon points="20,42 38,42 58,84 40,84" fill="#22d3ee" />
-              </g>
-              <text
-                x="86"
-                y="68"
-                fontFamily="Space Grotesk, system-ui, sans-serif"
-                fontWeight="500"
-                fontSize="62"
-                letterSpacing="-2.5"
-                fill="currentColor"
-              >
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Kove"
+                width={140}
+                height={40}
+                className="h-9 w-auto"
+              />
+              <span className="ml-2 font-heading text-[24px] font-medium tracking-[-0.03em] text-white">
                 Kove
-              </text>
-            </svg>
+              </span>
+            </div>
             <p className="mt-3 text-[13px] leading-relaxed text-white/55">
               Votre site, notre craft. Sites premium livrés en 48-72h,
               propulsés par l&apos;IA. Design qui convertit, code optimisé.

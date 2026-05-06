@@ -37,11 +37,11 @@ export function Footer() {
               Lancer mon projet
             </a>
             <a
-              href="mailto:hello@kove.agency"
+              href="mailto:hello@koveagency.fr"
               className="inline-flex items-center gap-2 text-[13px] text-white/60 transition-colors hover:text-white"
             >
               <Mail size={13} />
-              hello@kove.agency
+              hello@koveagency.fr
             </a>
           </div>
         </div>

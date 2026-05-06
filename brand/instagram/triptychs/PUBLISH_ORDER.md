@@ -89,7 +89,7 @@ Pour chaque dossier (`01-manifesto`, `02-process`, etc.) :
 ### `06-disponibilites/`
 1. (gauche) → *"Disponible ce mois-ci pour briefs sérieux."*
 2. (milieu) → *"3 places. Pas une de plus."*
-3. (droite) → *"→ kove.fr — réserve ton créneau."*
+3. (droite) → *"→ koveagency.fr — réserve ton créneau."*
 
 ---
 

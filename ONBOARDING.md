@@ -234,8 +234,8 @@ Avant de push une nouvelle section, asset, ou modification de design, valide :
 - ✅ Footer (logo + liens + social + bottom bar)
 
 **En cours / next** :
-- 📅 Custom domain `kove.fr` (DNS à configurer)
-- 📅 Compte Instagram `@kove.fr` + premiers triptyques publiés
+- 📅 Custom domain `koveagency.fr` (DNS à configurer)
+- 📅 Compte Instagram `@koveagency.fr` + premiers triptyques publiés
 - 📅 Section "Études de cas" détaillées (avant/après par client)
 - 📅 Page legal mentions / politique de confidentialité
 
@@ -245,8 +245,8 @@ Avant de push une nouvelle section, asset, ou modification de design, valide :
 
 | Quand | Quoi |
 |-------|------|
-| Cette semaine | Compte Insta `@kove.fr` lancé + 2 triptyques publiés |
-| Cette semaine | Domain `kove.fr` configuré sur Railway |
+| Cette semaine | Compte Insta `@koveagency.fr` lancé + 2 triptyques publiés |
+| Cette semaine | Domain `koveagency.fr` configuré sur Railway |
 | +2 semaines | 3 nouveaux clients en pipeline (cold DM LinkedIn) |
 | +1 mois | Section "Études de cas" en ligne |
 | +2 mois | Refonte Pricing + FAQ basés sur retours clients |

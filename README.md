@@ -98,4 +98,4 @@ scripts/brand/  # génération automatisée des brand assets
 
 - Repo : https://github.com/Maximgeb/kove
 - Site live : https://web-production-996275.up.railway.app
-- Domaine custom : `kove.fr` (configuration DNS en cours)
+- Domaine custom : `koveagency.fr` (configuration DNS en cours)

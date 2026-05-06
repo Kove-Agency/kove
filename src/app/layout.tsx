@@ -26,7 +26,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kove.fr"),
+  metadataBase: new URL("https://koveagency.fr"),
   title: "Kove — Votre site premium, livré en 48-72h.",
   description:
     "Agence web nouvelle génération. Sites e-commerce, vitrines et landing pages livrés en 48-72h grâce à l'IA. Design premium, performance maximale.",

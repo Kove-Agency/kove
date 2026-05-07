@@ -89,7 +89,7 @@ const PLANS: Plan[] = [
 
 const UNIFIED_CTA_LABEL = "Discuter de mon projet";
 const UNIFIED_CTA_HREF =
-  "https://calendly.com/kove/nouvelle-reunion" +
+  "https://calendly.com/kove-support/appel-decouverte" +
   "?hide_gdpr_banner=1" +
   "&background_color=0f0f0f" +
   "&text_color=ffffff" +

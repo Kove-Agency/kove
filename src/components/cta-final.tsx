@@ -6,7 +6,7 @@ import { Clock, FileCheck2, Video } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
 
 const CALENDLY_URL =
-  "https://calendly.com/kove/nouvelle-reunion" +
+  "https://calendly.com/kove-support/appel-decouverte" +
   "?hide_gdpr_banner=1" +
   "&hide_event_type_details=0" +
   "&background_color=0f0f0f" +
@@ -84,7 +84,7 @@ export function CTAFinal() {
           <p className="mt-5 text-center text-[12.5px] text-white/45">
             Le widget ne s&apos;affiche pas ?{" "}
             <a
-              href="https://calendly.com/kove/nouvelle-reunion"
+              href="https://calendly.com/kove-support/appel-decouverte?primary_color=3b82f6"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-accent underline-offset-4 hover:underline"

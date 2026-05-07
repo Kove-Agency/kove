@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MetalFx } from "metal-fx";
 import { ArrowUpRight, PlayCircle } from "lucide-react";
 import { TechLines } from "@/components/tech-lines";
 import { AnimatedShaderBackground } from "@/components/ui/animated-shader-background";
@@ -70,14 +71,16 @@ export function Hero({ deliveryDay }: HeroProps) {
           transition={{ ...t, delay: 0.32 }}
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:mt-10"
         >
-          <AnimatedCTA
-            href="#contact"
-            variant="solid"
-            icon={<ArrowUpRight size={16} strokeWidth={2} />}
-            iconMotion="diagonal"
-          >
-            Réserver un appel
-          </AnimatedCTA>
+          <MetalFx preset="chromatic" variant="button">
+            <AnimatedCTA
+              href="#contact"
+              variant="solid"
+              icon={<ArrowUpRight size={16} strokeWidth={2} />}
+              iconMotion="diagonal"
+            >
+              Réserver un appel
+            </AnimatedCTA>
+          </MetalFx>
           <AnimatedCTA
             href="#portfolio"
             variant="outline"

@@ -27,10 +27,10 @@ export function Navbar() {
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" as const }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-[#000000] transition-shadow duration-500 ${
         scrolled
-          ? "border-b border-white/[0.06] bg-[#0f0f0f]/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-white/[0.06] shadow-[0_8px_30px_-8px_rgba(0,0,0,0.6)]"
+          : "border-b border-transparent"
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-[72px] lg:px-8">
@@ -41,16 +41,13 @@ export function Navbar() {
           className="inline-flex items-center text-white transition-opacity hover:opacity-85"
         >
           <Image
-            src="/logo.png"
+            src="/logo-navbar.png"
             alt="Kove"
-            width={140}
-            height={40}
+            width={280}
+            height={80}
             priority
             className="h-7 w-auto lg:h-8"
           />
-          <span className="ml-2 font-heading text-[20px] font-medium tracking-[-0.03em] text-white lg:text-[22px]">
-            Kove
-          </span>
         </a>
 
         {/* Desktop nav — centered */}
@@ -95,7 +92,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" as const }}
-            className="overflow-hidden border-t border-white/[0.06] bg-[#0f0f0f]/95 backdrop-blur-md md:hidden"
+            className="overflow-hidden border-t border-white/[0.06] bg-[#000000] md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-6">
               {navLinks.map((link, i) => (

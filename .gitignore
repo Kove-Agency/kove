@@ -43,3 +43,9 @@ next-env.d.ts
 # clone-website skill artifacts (heavy, local-only)
 /docs/
 .claude-flow/
+
+# Stray asset source files at repo root (designs uploaded for processing)
+/Logos*.png
+/Design sans titre*.png
+/téléchargement*.png
+/Capture d*
